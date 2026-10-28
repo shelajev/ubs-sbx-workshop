@@ -5,8 +5,9 @@ Pi using Gemini to coordinate, Claude doing development and Codex reviewing.
 Keep the same roles and messages so the audience can follow a familiar task
 across the new assistants and providers.
 
-Use **`gemini-3.8-flash`** for every Gemini role in this workshop. Attendees configure
-each role even when their available accounts mean using one provider for all of them.
+This optional presenter demonstration uses **`gemini-3.8-flash`** for its Gemini
+role. The attendee path uses Claude Code and Sonnet for all three roles; it does
+not require any of these additional accounts or model choices.
 
 ## What changes, and what does not?
 
@@ -53,7 +54,7 @@ sbx secret set google
 Enter the corresponding keys at the secure prompts. You do not need both a
 subscription and an API key for Claude Code or Codex. Pi itself uses provider APIs,
 so its normal Anthropic route needs an Anthropic API key; this mixed route instead
-uses the Gemini key. SBX v0.45.0-rc2 calls the Gemini credential service `google`;
+uses the Gemini key. The kit selects the Gemini credential service `google`;
 the kit's `google_secret_service` argument can also select a legacy service named
 `gemini`.
 
@@ -108,8 +109,7 @@ The result should include a real host task read by Claude, an independent Codex
 check, and Pi's combined answer. The gateway-capable role remains Claude; the other
 roles communicate with it through the same file-message helpers.
 
-This RC's `sbx env` accepts built-in agent names, not a custom sandbox kit as its
-`agent` value. The presenter helper therefore uses `sbx create KIT --kit MIXIN` and
+The presenter helper uses `sbx create KIT --kit MIXIN` and
 attaches the host server with `--static-mcp`. These are different ways to compose
 the same SBX building blocks. The reference helper uses the ACR, Pi and Herdr kits;
 it does not read extra kits from your evolving `factory/` configuration.

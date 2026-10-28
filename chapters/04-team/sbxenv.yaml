@@ -18,5 +18,4 @@ ports:
     hostIP: 127.0.0.1
 kits:
   - source: "git+https://github.com/shelajev/acr-sbx-kit.git#ref=f446b95bccabd879912db174c190ff09377b7c7b"
-  - source: ../kits/pi
   - source: ../kits/herdr

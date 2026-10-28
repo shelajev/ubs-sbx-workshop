@@ -11,6 +11,62 @@ The seeded backlog also contains `wad-104`, an optional take-home or presenter
 exercise that adds a service column and filter to the incident table. It is not
 part of the chapter 1–7 walkthrough.
 
+## Prepare the main workshop
+
+Use the same SBX release as attendees: **v0.50.0**. Recheck the release and
+installation links before each delivery. Keep the existing v2 kits for this lab;
+moving to v3 kits is a separate exercise.
+
+The two-hour attendee path keeps the team and uses Claude Code with the same
+Sonnet model for coordinator, developer and QA. Skip chapter 3; additional
+providers and chapter 7's own-project exercise are extensions.
+
+| Minutes | Activity |
+|---|---|
+| 15 | Setup recovery and an authenticated Claude response |
+| 20 | One agent, the running app, isolation and ports |
+| 15 | Repeatable environment and the task backlog |
+| 15 | A small kit and shared guidance |
+| 15 | Three Claude roles and a small handoff |
+| 20 | Scoped MCP task access and the tested change |
+| 10 | Human decision and inspection of the result |
+| 10 | Catch-up, questions and recovery buffer |
+
+Before delivery, rehearse from a fresh download in a separate workshop clone:
+
+1. Complete chapter 0 and get a successful Claude response in chapter 1. Verify
+   the database, app and browser access through the published port.
+2. Launch the chapter 4 reference after the guidance interlude. Confirm all three
+   roles acknowledge and answer the read-only handoff using subscription access.
+3. Run chapter 5 on the target release. Review its host-command approval, verify
+   `/mcp`, read a real task and append a result note to the disposable backlog.
+4. Install Chromium inside SBX. Inspect any network approval before allowing the
+   specific host for the workshop sandbox. Run browser tests and record passed,
+   failed and skipped counts. ARM machines may use `ports.ubuntu.com` for packages.
+5. Join chapter 6 through SSH and answer the product question. Check that the
+   current resolution note clears while history retains the old resolution.
+6. Exercise cleanup and a catch-up checkpoint. Keep a prepared feature checkpoint
+   available if a coding task takes too long during delivery.
+
+The success criterion is a running change, actual verification evidence, an
+inspectable commit and a backlog result note. A role's “done” message is not proof.
+Avoid unrelated dependency upgrades on the eve of delivery.
+
+Validation recorded on October 29: SBX 0.49.2 environment plans and local kit
+validation passed. In a disposable SBX, fresh materials, checkpoint recovery,
+helper tests, Beans MCP protocol tests and the starter app's 19 non-browser tests
+passed; the app's health endpoint also responded through a published host port.
+The 0.50.0 CLI was checked inside SBX, including removal of `--auto-approve`.
+The revised all-Claude configuration was also exercised in a fresh Claude sandbox
+with the pinned ACR and Herdr kits: subscription authentication returned a real
+Sonnet response, all three roles acknowledged, and coordinator → developer → QA
+→ human completed a read-only handoff. Catch-up and launcher regression checks
+passed, including paths with spaces and preserved custom role choices.
+This does not establish a full 0.50.0 runtime or Windows rehearsal. Chromium
+download required approval for `cdn.playwright.dev`; browser checks must be
+completed after that access decision. Rehearse the MCP gateway and SSH steps above
+on the target host before calling the whole workshop verified.
+
 ## Look at the environment as a whole
 
 Prepare one demo sandbox and keep it connected before presenting. The examples
@@ -108,7 +164,7 @@ prepared demo by its name and open its agent:
 
 ```bash
 # HOST — replace CLOUD_DEMO_NAME with that actual name
-sbx --cloud run --name CLOUD_DEMO_NAME
+sbx --cloud run claude --name CLOUD_DEMO_NAME
 ```
 
 Talk to the agent and ask it to inspect the prepared app/environment. Exit when you

@@ -149,10 +149,12 @@ the SANDBOX shell. In HOST:
 
 ```bash
 sbx env rm factory/sbxenv.yaml --env-arg name=wad-my-project --env-arg "app=$(pwd)/projects/my-project"
-sbx mcp rm wad-my-project-beans
 ```
 
-The MCP command removes this environment's host tool registration. The app argument identifies the same workspace used on creation. You now have an
+SBX 0.50.0 also removes this environment's local MCP command. If an older or
+manually registered `wad-my-project-beans` entry remains in `sbx mcp ls`, remove it
+with `sbx mcp rm wad-my-project-beans`. The app argument identifies the same
+workspace used on creation. You now have an
 environment and team you can reuse: change the task and select a project for the
 next job.
 

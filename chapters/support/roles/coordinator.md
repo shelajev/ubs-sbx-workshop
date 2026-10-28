@@ -8,8 +8,9 @@ Use it instead of separate handoff-send/notification commands. Do not use harnes
 After sending a request, end your turn. Never call handoff wait or poll in a loop;
 the recipient's reply wakes you. Inspect `crew logs ROLE` if delivery reports a block.
 Read ~/work/task.json when it exists. Otherwise ask developer to call the Beans MCP
-get_task tool for the ID in ~/work/task-id and write ~/work/task.json. Pi has no MCP
-client; the developer is the gateway role. Do not invent or fetch tasks elsewhere.
+get_task tool for the ID in ~/work/task-id and write ~/work/task.json.
+Keep task retrieval and result notes with the developer, including when all roles
+use Claude. Do not invent or fetch tasks elsewhere.
 Ask developer to inspect and set up the project inside SBX, then implement the task.
 Await a completion message, then ask QA to review its exact
 commit. A failed review goes back to developer with the findings.

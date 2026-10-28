@@ -13,12 +13,17 @@ connecting the host, sandbox, agent team and task backlog.
 | [Chapter 1: One agent](01-agent/README.md) | Isolated execution and a mounted project | An agent runs containers, changes code and opens the app through a port |
 | [Chapter 2: Repeatable environment](02-launcher/README.md) | sbxenv and a Beans task | The same project and its task in a newly created sandbox |
 | [Interlude: Shared guidance](02.5-acr/README.md) | A simple kit, then ACR | A reusable installation and a policy-backed review |
-| [Chapter 3: Another assistant](03-pi/README.md) | Pi and provider configuration | Try assistants and models against the same code and guidance |
-| [Chapter 4: Team](04-team/README.md) | Herdr, roles and file messages | A request passes from coordinator to developer to QA |
+| [Chapter 4: Team](04-team/README.md) | Herdr and three Claude Code sessions using one account and model | A request passes from coordinator to developer to QA |
 | [Chapter 5: Host tools](05-mcp/README.md) | MCP gateway and scoped access | Agents read a host task and append the reviewed result |
 | [Chapter 6: Human intervention](06-human/README.md) | SSH and a product answer | The existing team resumes using your decision |
 | [Chapter 7: Reuse](07-factory/README.md) | Another project and task | The same factory works in a different mounted repository |
 | [Presenter extensions](08-presenter/README.md) | Runtime mounts, cloud and governance | Additional capabilities demonstrated by the presenter |
+| [Optional chapter 3: Another assistant](03-pi/README.md) | Pi and separate API access | Compare assistants and providers after completing the main workshop |
+
+The main path is **0 → 1 → 2 → shared guidance → 4 → 5 → 6**. Keep the chapter
+numbers when skipping optional chapter 3. Chapter 7 is an extension for your own
+project. Every attendee team role uses Claude Code with the same Sonnet model and
+subscription; no additional model account is required.
 
 The third-party tools and workflow are the author's choices, not Docker
 endorsements. [About the tool choices](../README.md#about-the-tool-choices).
@@ -47,8 +52,8 @@ shell is for a concrete investigation; it is not a permanent part of the workflo
 The numbered directories contain completed reference configurations. A catch-up
 command puts the chosen configuration in **the same `factory/` directory**, so the
 next incremental chapter starts from the right state. First, exit the current
-sandbox session and follow that chapter's cleanup instructions. In chapters 5–7,
-cleanup includes removing the host MCP registration as well as the sandbox.
+sandbox session and follow that chapter's cleanup instructions. In SBX 0.50.0,
+removing a local environment also removes its environment-defined MCP commands.
 
 If you did not complete chapter 2, install Beans and initialize the disposable
 workshop backlog before using a catch-up configuration for chapter 3 or later:
@@ -61,11 +66,11 @@ workshop backlog before using a catch-up configuration for chapter 3 or later:
 
 The later launchers expect both the pinned Beans executable and this host backlog.
 
-For example, to start chapter 3 with the ACR/Pi environment already assembled:
+For example, to join chapter 4 with the ACR/Herdr environment already assembled:
 
 ```bash
 # HOST
-./scripts/use-chapter.sh 03-pi
+./scripts/use-chapter.sh 04-team
 ```
 
 This saves your previous configuration under `.local/` and prints its location.
@@ -85,16 +90,16 @@ rules for future workers by adding this entry under the new file's `kits` list:
 The kit directory itself remains in `factory/`; this entry tells SBX to apply it.
 The reference file supplies the chapter's standard kits, so keep those too.
 
-For the chapter 3 example above, continue in your SANDBOX tab:
+For the chapter 4 example above, continue in your SANDBOX tab:
 
 ```bash
-./scripts/launch-factory.sh wad-ch-03
+./scripts/launch-factory.sh wad-ch-04
 ```
 
-The configuration supplies the ACR kit and opens a shell. A fresh application
+The configuration supplies the ACR and Herdr kits and opens a shell. A fresh application
 checkpoint includes ACR configuration but not the installed workshop policy.
 In that sandbox shell, install and verify the policy and review skill before
-continuing at chapter 3's provider setup:
+continuing with chapter 4's account check and team startup:
 
 ```bash
 install-guidance
@@ -111,9 +116,10 @@ the SSH chapter without doing the earlier feature:
 This also replaces `sample-app/` with the completed feature, saving its previous
 contents under `.local/` and printing the backup location. Before launching, check
 `factory/team.tsv`. If you have not configured a team before, catch-up supplies
-the reference Pi/Anthropic coordinator and two Claude roles. Choose the
-[all-Claude configuration](04-team/README.md#2-give-the-assistants-different-responsibilities)
-if you have only subscription access. Restore any extra kit entries as described
+the reference all-Claude team using Sonnet for all three roles. If an older
+configuration was preserved, replace its rows with the
+[current all-Claude configuration](04-team/README.md#2-give-the-assistants-different-responsibilities).
+Restore any extra kit entries as described
 above. Then launch `wad-ch-06`, run `install-guidance` in its sandbox shell for the
 fresh checkpoint, and submit its task as chapter 6 describes.
 The path you work in remains `sample-app/`.
@@ -130,13 +136,12 @@ For example, after chapter 5:
 ```bash
 # HOST
 sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-05
-sbx mcp rm wad-ch-05-beans
 ```
 
-The first command removes the sandbox; the second removes its host tool
-registration. The sandbox and host connection are separate resources.
-Chapters 6 and 7 show the corresponding names for their environments. Earlier
-chapters have no MCP registration to remove.
+Review the destroy plan for the sandbox and its local MCP command. On an older
+release or after manual registration, inspect `sbx mcp ls`; remove only a remaining
+`wad-ch-05-beans` entry with `sbx mcp rm wad-ch-05-beans`. Chapters 6 and 7 show
+their corresponding names. Earlier chapters have no MCP registration to remove.
 
 Then run the chapter's launcher again from the SANDBOX tab, at the workshop root.
 It creates the environment from your updated configuration. Your app's current

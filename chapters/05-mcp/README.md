@@ -109,7 +109,7 @@ With the server in the environment file, Claude can call its tools. The prompt
 gives the team a reason to use them: fetch this task, do the work and write back
 the result. Claude is the developer connected to the gateway, so the coordinator
 asks it for the requirements through the messages you tried in chapter 4. This
-works with either coordinator configuration from that chapter.
+uses the all-Claude team from that chapter; no new model account is needed.
 
 In HOST, preview the connection:
 
@@ -123,6 +123,13 @@ starting at the workshop root:
 ```bash
 ./scripts/launch-factory.sh wad-ch-05
 ```
+
+SBX shows an approval plan before creation. Review the workspace, kits and host
+MCP command, then approve the declared access. In SBX 0.50.0, environment-defined
+MCP commands also require host-command approval. Approve only this workshop's
+Beans wrapper after checking its path and arguments. Keep `scripts/`, `factory/`
+and the host backlog outside the writable `sample-app/` mount. Do not use
+`--skip-host-commands` for this exercise; it disables the environment's MCP commands.
 
 ## 4. Explore the actual MCP tools
 
@@ -174,6 +181,9 @@ crew watch
 ```
 
 Read the reported failure. A common blocked destination is `cdn.playwright.dev`.
+Current SBX may report “Approval required” and suggest `sbx policy approval ls`.
+Inspect that request in HOST; the sandbox-scoped allow below is another way to
+record your decision for this workshop environment.
 If that is the destination your agent reports and you decide to allow it, use HOST:
 
 ```bash
@@ -195,7 +205,8 @@ actually ran? A skipped test has not exercised the browser. If startup fails,
 use its error message to identify what the sandbox still needs.
 
 Redirects and system package repositories may introduce another destination;
-Ubuntu mirrors such as `archive.ubuntu.com` or `security.ubuntu.com` are common.
+Ubuntu mirrors such as `archive.ubuntu.com`, `security.ubuntu.com` or the ARM
+mirror `ports.ubuntu.com` are common.
 They are intentionally not pre-authorized in this exercise: when a request is
 blocked, inspect it, ask the agent why it is needed, and from your host terminal,
 allow only the specific hostname you accept. If installation and browser checks
@@ -249,12 +260,13 @@ to leave the SANDBOX shell. In HOST:
 
 ```bash
 sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-05
-sbx mcp rm wad-ch-05-beans
 ```
 
-The first command removes the sandbox. The second removes its named host MCP
-registration. They are separate resources, so we remove both before creating the
-next environment. Keep the application as it is; the next task builds on your
+Review the destroy plan. In SBX 0.50.0, removing this local environment also
+revokes and removes its environment-defined MCP command. If you are recovering
+an older installation or a manually registered server, inspect `sbx mcp ls` and
+remove only a remaining `wad-ch-05-beans` entry with `sbx mcp rm wad-ch-05-beans`.
+Keep the application as it is; the next task builds on your
 assignment-and-resolution feature.
 
 Next: [answer a human question through SSH](../06-human/README.md).

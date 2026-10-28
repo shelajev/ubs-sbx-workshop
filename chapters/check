@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Real installed-CLI validation; no test doubles and no model calls.
+# Configuration regression checks and real installed-CLI validation; no model calls.
 set -euo pipefail
 root="$(cd "$(dirname "$0")/.." && pwd)"
 command -v sbx >/dev/null || { echo 'NOT RUN: sbx is required'; exit 2; }
+bash "$root/scripts/tests/team-defaults.sh"
 for script in "$root/chapters/support/launch" "$root/chapters/support/bin/"* "$root/chapters/00-setup/setup" "$root/chapters/0"*/launch; do
   case "$(head -1 "$script")" in *python*) python3 -c 'import ast,sys; ast.parse(open(sys.argv[1]).read())' "$script";; *) bash -n "$script";; esac
 done

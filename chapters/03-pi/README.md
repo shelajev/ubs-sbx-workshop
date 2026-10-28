@@ -1,4 +1,9 @@
-# Chapter 3: Give the factory a choice of assistant
+# Optional chapter 3: Give the factory a choice of assistant
+
+The main workshop continues from shared guidance to
+[chapter 4's all-Claude team](../04-team/README.md). This extension is for your own
+experiments or a presenter demonstration. It is not a prerequisite for teams,
+MCP or human intervention, and it requires separate API access for model requests.
 
 You have a project and shared coding guidance ready for an agent. Let's try a
 different assistant with that same setup. SBX gives you somewhere to install its
@@ -8,14 +13,13 @@ installation stays inside the sandbox; it can still work on your real project.
 We will install [Pi](https://pi.dev), an open-source coding assistant, and
 use it to explore the same application and coding policy. You can run the model
 conversation with Anthropic API access, or follow a partner's or the presenter's
-conversation if you have only a Claude subscription. Everyone will compose the kit
-and configure team roles in the next chapter.
+conversation if you have only a Claude subscription.
 
 Keeping the same project, task and guidance gives you a familiar change to discuss
 with Pi. You can compare how it finds the relevant code and explains its review.
 
 This introduces three separate choices: the assistant program, its model provider,
-and the particular model. Later we will assign those choices to team roles.
+and the particular model. The main team uses Claude Code with one model for every role.
 
 ## 1. Understand what the Pi kit supplies
 
@@ -112,7 +116,7 @@ Pi knows how to make a model request, while SBX controls where it can connect an
 supplies the credential for that request.
 
 Accept the workspace trust prompt if shown. In Pi, type `/model` to see available
-models and choose one your account can use. Keep that model ID for the next chapter.
+models and choose one your account can use for this optional experiment.
 
 ## 4. Use the same guidance with a different assistant
 
@@ -148,8 +152,7 @@ that additional credential configuration in the
 Before repeating the request, start a fresh conversation with `/new` so the first
 answer doesn't influence the next one. Then compare the reviews: does each answer
 find the relevant code, apply the shared rule and explain its conclusion? Judge
-those details as well as how easy the answer is to read. Keep the working
-provider/model ID you want to use for your team.
+those details as well as how easy the answer is to read.
 
 This is a reusable way to evaluate tools: put an assistant's installation and
 network requirements in a kit, create its sandbox, give it a bounded task, and

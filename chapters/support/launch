@@ -46,7 +46,8 @@ else
   if [ "$MODE" = mcp ]; then
     env_args+=(--env-arg "host_shell=$host_shell")
   fi
-  sbx env create "$chapter/sbxenv.yaml" "${env_args[@]}" --auto-approve
+  # Let the learner review workspace access and host MCP commands before approval.
+  sbx env create "$chapter/sbxenv.yaml" "${env_args[@]}"
 fi
 COPYFILE_DISABLE=1 tar --no-xattrs -cf "$payload.tar" -C "$payload" .
 trap 'rm -rf "$payload"; rm -f "$payload.tar"' EXIT

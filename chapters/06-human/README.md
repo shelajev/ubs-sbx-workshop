@@ -122,10 +122,11 @@ SANDBOX tab. In HOST:
 
 ```bash
 sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-06
-sbx mcp rm wad-ch-06-beans
 ```
 
-The second command removes this sandbox's host MCP registration.
+Review the destroy plan. SBX 0.50.0 also removes the local MCP command registered
+by this environment. If an older or manually registered `wad-ch-06-beans` entry
+remains in `sbx mcp ls`, remove that entry with `sbx mcp rm wad-ch-06-beans`.
 
 For the next project, you can answer product questions through the same team
 conversation. If an agent needs more network access, use the host policy controls

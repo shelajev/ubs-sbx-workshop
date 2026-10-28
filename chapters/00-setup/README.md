@@ -33,13 +33,17 @@ terminal to install SBX and the host utilities, check its version, and sign in:
 
 ```bash
 # HOST
-brew install docker/tap/sbx@rc git jq coreutils
+brew trust docker/tap
+brew install docker/tap/sbx git jq coreutils
 sbx version
 sbx login
 ```
 
 `sbx login` signs in to Docker; Claude's model-account login happens separately
 in chapter 1. The other packages supply Git, JSON reading and checksums.
+If the stable SBX package is already installed, update it with
+`brew upgrade docker/tap/sbx`. If you have the old `sbx@rc` package, follow the
+current installation guide to switch to stable before the workshop.
 
 ### Windows x64
 
@@ -51,8 +55,14 @@ used by our host scripts. With WinGet, run this in **PowerShell**:
 winget install jqlang.jq
 ```
 
-Download and run `DockerSandboxes.msi` from the
-[v0.45.0-rc2 release](https://github.com/docker/sbx-releases/releases/tag/v0.45.0-rc2).
+Install the current-user SBX package from PowerShell:
+
+```powershell
+winget install -h Docker.sbx
+```
+
+Alternatively, download and run `DockerSandboxes.msi` from the
+[v0.50.0 release](https://github.com/docker/sbx-releases/releases/tag/v0.50.0).
 Follow the Windows prerequisites in the SBX installation guide linked above.
 
 Open new **Git Bash** tabs after installation and use them for both workshop
@@ -75,9 +85,16 @@ shows how to use it to join your running team.
 
 ### Check the version and tools
 
-Check that `sbx version` reports **v0.45.0-rc2**, the version used by these
-instructions. If Homebrew installed a different RC, use the installer for your
-platform from the [SBX release](https://github.com/docker/sbx-releases/releases/tag/v0.45.0-rc2).
+Use **SBX v0.50.0**, the current stable release targeted by these instructions.
+Check `sbx version` before continuing. Package managers can move to newer releases;
+use the [v0.50.0 installer](https://github.com/docker/sbx-releases/releases/tag/v0.50.0)
+if you need the workshop's target version. Do not install the old RC for this lab.
+Environment and kit commands are experimental, so check with the instructor before
+using a different release.
+
+macOS requires Sonoma 14 or later on Apple silicon. Windows requires Windows 11
+and Windows Hypervisor Platform enabled for local sandboxes; enabling it may need
+administrator access and a restart. Complete those prerequisites before arriving.
 
 You also need a browser, SSH, internet access and enough available memory for a
 4-CPU/8-GB sandbox. Run one workshop sandbox at a time when resources are limited.
@@ -98,10 +115,14 @@ For chapter 1, use your Claude subscription: we will sign in with `/login` insid
 Claude Code. You do not need to create an API key for that chapter. If SBX already
 has an Anthropic API credential configured, it may use that instead.
 
-Chapter 3 uses Pi with an **Anthropic API key**; a Claude subscription alone does
-not provide API access. If you only have the subscription, you can follow that
-model exercise with a partner or presenter and run your own team with Claude Code
-in all three roles. You'll still build the kits and configure the roles yourself.
+The main workshop uses Claude Code for all three team roles, with the same Sonnet
+model and subscription account. You do not need separate provider accounts,
+per-role model choices or an Anthropic API key. The roles share your account's
+usage limits.
+
+Chapter 3's Pi/API comparison and the mixed-provider demonstration are optional.
+Skip them and continue from shared guidance directly to chapter 4. A Claude
+subscription alone does not provide the API access used by those extensions.
 Never put keys or OAuth tokens in workshop files.
 
 ## 3. Clone the workshop and get its materials
@@ -171,5 +192,11 @@ remove each sandbox before creating the next one with its new capabilities.
 
 You are ready when `sbx version` reports the intended version, Docker login is
 complete, and you can open `sample-app/README.md` in your editor.
+
+Before arriving, complete chapter 1 through a successful Claude response and
+opening the running app in your browser. That checks model authentication,
+image downloads, nested application containers and port publishing on your laptop.
+Keep any setup error to show the instructor. Pair with a working laptop if your
+machine or account cannot complete this preflight.
 
 Next: [run one agent](../01-agent/README.md).

@@ -46,7 +46,7 @@ Source: chapters/01-agent, chapters/02-launcher, chapters/05-mcp, chapters/06-hu
 
 About 60 seconds.
 First, run an agent manually and inspect its access. Next, make that environment repeatable with sbxenv and a small launcher. Add a simple kit, then ACR to distribute coding guidance.
-Now we need another assistant, so add Pi through a kit. Separate conversations do not coordinate themselves: add Herdr, role instructions, file messages and explicit wakeups.
+Now give three Claude Code sessions separate responsibilities using the same account and Sonnet model. Add Herdr, role instructions, file messages and explicit wakeups so those conversations can coordinate.
 The team needs a live task and somewhere to report the result: connect a small host Beans server through SBX's MCP gateway. Inspect its limited tool surface and make a deliberate network-access decision. Join through SSH when the team needs a human answer.
 Finally, keep this environment and bring another project and task. Every chapter leaves something working that the next one extends.
 Source: chapters/README.md.
@@ -55,7 +55,7 @@ Source: chapters/README.md.
 
 About 55 seconds.
 We try a tiny hello-world kit first so the mechanism is visible. Then ACR supplies the skill and coding policy. The policy package and the kit are different things: the kit installs the tool that retrieves and materializes the guidance.
-We compose more mixins as needs appear: Pi for another assistant, Herdr for its sessions. A template supplies the base image; kits layer the tools and settings onto it. We discuss templates without asking everyone to build an image.
+We add Herdr as a mixin for session management. Pi is an optional extension for trying another assistant afterward. A template supplies the base image; kits layer the tools and settings onto it. We discuss templates without asking everyone to build an image.
 These are technologies you can reuse with a different set of tools. Beans, ACR, Herdr, Pi and this workflow are my choices for the workshop, not third-party endorsements by Docker. Docker Agent is another team framework you could run inside SBX.
 Sources: chapters/02.5-acr/README.md, chapters/03-pi/README.md, chapters/04-team/README.md, README.md. Docker Agent: https://docs.docker.com/ai/docker-agent/
 
@@ -63,9 +63,8 @@ Sources: chapters/02.5-acr/README.md, chapters/03-pi/README.md, chapters/04-team
 
 About 55 seconds.
 SBX is also a place to try new assistants and models without installing their tool stacks on your laptop. Keep the project, task and guidance the same, then compare what each assistant actually does. Tools and processes live in the sandbox; edits to the mounted project persist.
-Our default team uses Pi as coordinator and Claude Code for developer and QA. Each role has its own assistant, provider and model setting. File messages carry the durable handoff; Herdr manages sessions and delivers the wakeup. We do not equate a status indicator with completed work.
-Everyone inspects and configures the roles. If your access permits it, the variation uses Pi with Gemini, Claude Code with Anthropic, and Codex with OpenAI. With one provider, keep the same structure and use the access you have. Separate sessions with the same model are not the same as independent model diversity.
-We will use the mixed-provider configuration to explore team handoffs, then return to the main environment for the MCP exercise.
+Our default team uses Claude Code for coordinator, developer and QA, with Sonnet in all three roles. One Claude subscription supplies model access; the conversations have different responsibilities. File messages carry the durable handoff; Herdr manages sessions and delivers the wakeup. We do not equate a status indicator with completed work.
+Everyone inspects the roles without configuring another provider. The mixed-provider variation is an optional presenter demonstration or take-home exercise. It is not needed for the MCP or human-decision chapters.
 Source: chapters/04-team/team.tsv, chapters/04-team/team-mixed.tsv, chapters/03-pi/MIXED-MODELS.md.
 
 ## 9. Useful work needs explicit access
@@ -79,8 +78,8 @@ Source: chapters/05-mcp/README.md, chapters/06-human/README.md, chapters/08-pres
 ## 10. What you need today
 
 About 45 seconds.
-We include installation, downloads and authentication in the session. Bring up the instructions and keep a host terminal ready. The current hands-on path targets macOS on Apple silicon and SBX v0.45.0-rc2. Application commands and containers run inside the sandbox.
-Docker login and model login are separate. A Claude subscription does not automatically give Pi Anthropic API access. Check the account requirements in chapter00; we will verify the provider route before starting the team. We are not supplying model accounts.
+Complete installation, downloads and the first successful Claude response beforehand when possible; we leave time for troubleshooting. Bring up the instructions and keep a host terminal ready. The hands-on path targets macOS on Apple silicon or Windows x64 with Git Bash and SBX v0.50.0. Application commands and containers run inside the sandbox.
+Docker login and Claude login are separate. The main path uses your Claude subscription for every role, with no additional provider or API key. Check the account requirements in chapter00; we will verify a response before starting the team. We are not supplying model accounts.
 Commands are labelled HOST, SANDBOX or the assistant name. Keep the launch terminal open and use another terminal to inspect the running environment. Stop the previous sandbox before reusing port3102. If a coding job takes longer, use the supplied sample-app checkpoint and continue learning the infrastructure.
 Source: chapters/00-setup/README.md and chapters/README.md.
 

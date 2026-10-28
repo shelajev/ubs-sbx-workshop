@@ -1,16 +1,19 @@
 # Chapter 4: Turn assistants into a team
 
-So far, you've talked to each assistant yourself. For a team to work, someone
+So far, you've talked to Claude yourself. For a team to work, someone
 needs to pass the developer's result to QA and bring questions back to you.
 We'll give those responsibilities to separate agent sessions managed by
 [Herdr](https://github.com/herdrdev/herdr). They exchange assignments and replies
 through files, with a notification to tell the recipient it has a message.
 
 You'll follow a small request through the team before asking it to change code.
+All three roles use Claude Code and the same Sonnet model through your Claude
+subscription. You do not need Pi, another provider account or an API key.
+Continue here directly from the shared-guidance interlude; chapter 3 is optional.
 
 ## 1. Add session management
 
-Open `chapters/kits/herdr/spec.yaml`. Like the Pi kit, it pins a tool version,
+Open `chapters/kits/herdr/spec.yaml`. It pins a tool version,
 allows its download hosts and installs the executable. It supplies a session
 manager; the role instructions decide what those sessions should do.
 
@@ -20,8 +23,10 @@ Add this entry to the existing `kits` list in `factory/sbxenv.yaml`:
   - source: ../chapters/kits/herdr
 ```
 
-You now combine three capabilities: ACR installs guidance, Pi provides another
-assistant, and Herdr manages the team's sessions.
+You now combine two capabilities: ACR installs guidance and Herdr manages the
+team's Claude sessions. If you tried the optional Pi chapter, remove its
+`../chapters/kits/pi` entry from this environment's `kits` list. The attendee team
+does not use it.
 
 [Docker Agent](https://docs.docker.com/ai/docker-agent/) is another way to define
 agent teams, models, instructions and tools. It could also run inside SBX. This
@@ -33,32 +38,24 @@ the environment and access-control concepts apply to either approach.
 Create `factory/team.tsv` in your editor. Each line has four fields, separated by spaces or tabs:
 
 ```text
-coordinator	pi	anthropic	claude-sonnet-5
-developer	claude	anthropic	claude-sonnet-5
-qa	claude	anthropic	claude-sonnet-5
+coordinator	claude	anthropic	sonnet
+developer	claude	anthropic	sonnet
+qa	claude	anthropic	sonnet
 ```
 
-Each row means **role, assistant, provider, model**. Use the working Pi model from
-chapter 3. The coordinator routes work and questions; the developer changes code;
-QA checks the proposed change against the requirements.
+Each row means **role, assistant, provider, model**. Keep these values for the
+workshop. [`sonnet` is Claude Code's model alias](https://code.claude.com/docs/en/model-config#model-aliases);
+you do not need to find a version-specific model ID. The coordinator routes work and questions; the
+developer changes code; QA checks the proposed change against the requirements.
 
-If you only have Claude subscription access, use this content instead:
+These are three separate conversations using the same Claude account and model.
+The `anthropic` field identifies the provider; it does not require an API key or
+switch Claude Code out of subscription authentication. The sessions share your
+account's usage limits. If your account restricts Sonnet, select a working model
+in a personal Claude session and use that same model in all three rows.
 
-```text
-coordinator	claude	anthropic	claude-sonnet-5
-developer	claude	anthropic	claude-sonnet-5
-qa	claude	anthropic	claude-sonnet-5
-```
-
-The sandbox lets you test these choices before relying on them: change a role's
-assistant or model, recreate the environment, and give it the same small handoff
-exercise. Kits keep the installation repeatable; the role table keeps the comparison
-separate from the communication protocol.
-
-These are separate conversations with separate responsibilities. Using different
-providers can add another review perspective; it does not change how roles exchange
-work. The [mixed-provider demonstration](../03-pi/MIXED-MODELS.md) explains the
-additional credential and assistant configuration for Pi/Gemini and Codex.
+Different assistants and providers are an optional presenter extension. The
+[mixed-provider demonstration](../03-pi/MIXED-MODELS.md) describes that extra setup.
 
 Read the three short role briefs in `chapters/support/roles/`. Notice that only the
 developer writes application code, and QA reviews a specific commit. A model name
@@ -74,7 +71,16 @@ In the SANDBOX tab, at the workshop root:
 
 ## 3. Start the sessions and understand what that means
 
-In the SANDBOX shell:
+Before starting the team, check the shared account in a personal conversation
+from the SANDBOX shell:
+
+```bash
+claude --model sonnet
+```
+
+If asked, use `/login` with your Claude subscription. Ask for a short response to
+confirm access, then type `/exit`. Do not set an Anthropic API secret for this
+subscription route. Back in the same SANDBOX shell:
 
 ```bash
 start-team

@@ -169,7 +169,9 @@ Exit Claude. In HOST:
 sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-02-5
 ```
 
-We now have a repeatable environment and shared coding guidance. Next we will add
-another assistant through another kit.
+We now have a repeatable environment and shared coding guidance. Next we will give
+three Claude sessions different responsibilities using the same account and model.
 
-Next: [bring in Pi](../03-pi/README.md).
+Next: [build an all-Claude team](../04-team/README.md).
+
+Optional extension: [try Pi and API-based models](../03-pi/README.md).

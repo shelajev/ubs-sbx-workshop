@@ -50,8 +50,9 @@ flowchart TB
   Runtime -->|published port: try the app| You
 ```
 
-You will build this one capability at a time. The roles can use Pi, Claude Code
-or Codex, with the provider and model chosen for each role. The source and task
+You will build this one capability at a time. The attendee team uses three Claude
+Code sessions with the same Sonnet model and Claude subscription. Trying Pi,
+Codex or different providers is an optional extension. The source and task
 backlog stay on your laptop; agent sessions and application services run inside
 the sandbox.
 
@@ -78,11 +79,11 @@ Each chapter adds something the factory needs:
 | Run one agent | Use SBX interactively, explore file isolation and shared files, run containers, and open the app through a published port. |
 | Repeat the setup | Describe an environment with sbxenv and connect it to a demo task in our task tracker, Beans, with a small host script. |
 | Share tools and guidance | Build a simple kit, then use the ACR kit to install a coding policy and review skill. |
-| Try assistants and models | Install Pi inside SBX, compare assistants on the same project, and choose the assistant, provider and model for each role. |
-| Form a team | Use Herdr to manage sessions and pass assignments between a coordinator, developer and reviewer. |
+| Form a team | Use Herdr to manage three Claude Code sessions and pass assignments between a coordinator, developer and reviewer using one account and model. |
 | Connect to host tools | Give the team scoped access to the task tracker through the MCP gateway and explore network controls. |
 | Bring in a human | Join through SSH, answer a product question and let the team continue. |
 | Use your own project | Supply another repository and task, let agents discover its setup, and review changes in your working copy. |
+| Optional: try assistants and models | Install Pi inside SBX and compare assistants on the same project; explore additional providers in a presenter demonstration or afterward. |
 
 We’ll also explore AI governance features and bleeding-edge additions to Docker
 Sandboxes.
@@ -109,15 +110,15 @@ exercises on a best-effort, self-supported basis, but the instructor may not be
 able to troubleshoot Linux-specific setup differences during the session.
 [Chapter 0](chapters/00-setup/README.md#1-install-the-host-prerequisites)
 walks you through installation, accounts and downloading the sample application.
-The first exercise uses Claude Code with your Claude account. Later, Anthropic API
-access lets you try Pi yourself; with subscription access alone, follow that model
-conversation with a partner or presenter and run your own team using Claude Code
-for all three roles. Everyone configures the roles and their models.
+The main exercises use Claude Code with your Claude subscription for every role.
+No additional provider account or API key is required. Optional Pi exercises use
+separate API access and can be skipped.
 [Chapter 0](chapters/00-setup/README.md#2-have-an-agent-account-ready)
 explains the account requirements. Docker containers run inside SBX, so you do not
 need Docker Desktop or a host Docker engine.
 
-Installation and model authentication are part of the workshop. The repository
+Complete installation, authentication and the chapter 1 smoke check before the
+workshop when possible; we'll leave time for troubleshooting. The repository
 and sample materials are publicly downloadable. After cloning this repository,
 run the materials helper from its root:
 
