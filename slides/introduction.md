@@ -88,5 +88,5 @@ Source: chapters/00-setup/README.md and chapters/README.md.
 Transition to hands-on work, about 20 seconds.
 Open the repository and start with chapter00. We will get SBX installed and model access working, then let one agent inspect and run the sample application. Keep the question from the start in view: what can it touch, and how do we choose that deliberately?
 Your take-home artifact is the growing factory configuration. Chapter07 shows how to give it another repository and a task of your own.
-Workshop: https://github.com/shelajev/wad-sbx-workshop
-Setup: https://github.com/shelajev/wad-sbx-workshop/blob/main/chapters/00-setup/README.md
+Workshop: https://github.com/shelajev/ubs-sbx-workshop
+Setup: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/00-setup.md

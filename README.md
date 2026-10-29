@@ -1,4 +1,4 @@
-# Build a software factory with Docker Sandboxes
+# UBS workshop: Build a software factory with Docker Sandboxes
 
 Give an agent a place to work, a task it can retrieve, and tools and guidance it
 can reuse. Then grow that arrangement into a team that implements, reviews and

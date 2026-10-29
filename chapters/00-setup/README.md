@@ -132,8 +132,8 @@ there, then clone the repository:
 
 ```bash
 # HOST
-git clone https://github.com/shelajev/wad-sbx-workshop.git
-cd wad-sbx-workshop
+git clone https://github.com/shelajev/ubs-sbx-workshop.git
+cd ubs-sbx-workshop
 ```
 
 ### Download the application and the prebuilt tool

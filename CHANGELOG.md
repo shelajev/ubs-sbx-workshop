@@ -2,6 +2,10 @@
 
 ## October 29, 2026
 
+- Publish the UBS workshop with attendee clone instructions and slide links
+  pointing to `shelajev/ubs-sbx-workshop`.
+
+
 - Fix rehearsal gaps: Windows dependency preparation for ACR, explicit published
   port in agent prompts, background-task exit guidance and browser recovery links.
   Use observation-driven isolation and policy exercises; advance team progress stages.
