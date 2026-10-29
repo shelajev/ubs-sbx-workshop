@@ -9,4 +9,4 @@ command -v sha256sum >/dev/null
 "$root/scripts/install-beans.sh"
 "$root/scripts/install-mcp.sh" --from-local
 "$root/scripts/backlog-init.sh" --disposable
-printf '\nReady. Start in chapters/01-agent.\n'
+printf '\nReady: workshop tools installed and practice backlog initialized.\n'

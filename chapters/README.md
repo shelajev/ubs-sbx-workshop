@@ -1,10 +1,15 @@
 # From one agent to a software factory
 
+**[Follow the sequential attendee workshop](../workshop/README.md).** It introduces
+manual SBX, task access, kits and environment files before the team continuation.
+The directories below provide completed configurations and focused reference
+exercises for catch-up and further exploration.
+
 Start with one agent and add what it needs for the next task. You'll keep working
 in `sample-app/` throughout, with the sandbox and team configuration in `factory/`.
 Each chapter builds on the previous one, so you can see what each new tool changes.
 
-See [the factory you will build](../README.md#what-you-will-build) for the diagram
+See [the factory you will build](../README.md#what-you-will-build) for the journey
 connecting the host, sandbox, agent team and task backlog.
 
 | Chapter | What you add | What you can observe |

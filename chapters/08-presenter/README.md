@@ -13,6 +13,12 @@ part of the chapter 1–7 walkthrough.
 
 ## Prepare the main workshop
 
+For the 90-minute session, use the [attendee path](../../workshop/README.md) and
+its [delivery notes](../../workshop/PRESENTER.md): 10 minutes of introduction,
+then hands-on work toward a kit and repeatable single-agent environment.
+The team and human-decision exercises are continuation material. The complete
+factory rehearsal below is useful for preparing those demonstrations.
+
 Use the same SBX release as attendees: **v0.50.0**. Recheck the release and
 installation links before each delivery. Keep the existing v2 kits for this lab;
 moving to v3 kits is a separate exercise.

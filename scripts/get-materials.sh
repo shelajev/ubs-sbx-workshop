@@ -32,4 +32,4 @@ for ref in app-00-starter app-01-warmup-solution app-02-feature-solution; do
   git -C "$ROOT/.local/app" rev-parse --verify "$ref^{commit}" >/dev/null
 done
 "$ROOT/scripts/prepare-app.sh"
-ok 'Materials ready. Start at chapters/00-setup/README.md.'
+ok 'Materials ready. Follow workshop/00-setup.md.'
