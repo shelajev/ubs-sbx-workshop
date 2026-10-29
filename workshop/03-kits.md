@@ -1,8 +1,11 @@
 # 3. Package the tools and guidance
 
 A fresh worker can see your code, but it also needs your tools and expectations.
-You'll make a small kit, then use a kit to install ACR and give the agent a
-versioned coding policy and review skill.
+You'll make a small [SBX kit](https://docs.docker.com/ai/sandboxes/customize/kits-v2/),
+a reusable definition of sandbox tools and setup. Then you'll use a kit to install
+[Agentic Context Registry (ACR)](https://github.com/jbaruch/agentic-context-registry),
+a package manager for agent guidance, and give the agent a versioned coding policy
+and review skill.
 
 ## 1. Make your first kit
 
@@ -47,7 +50,9 @@ sbx run claude "$(pwd)/sample-app" --name sbx-kit-first --skills off --cpus 4 --
 Use `codex` instead of `claude` if that is your chosen assistant. `--kit` adds
 our installation step to the built-in agent environment. Ask the agent:
 
-> Run ~/.local/bin/workshop-hello inside this sandbox and show its output.
+```text
+Run ~/.local/bin/workshop-hello inside this sandbox and show its output.
+```
 
 Compare the output with the command in your kit file. Change the greeting in your
 **host kit file** to something meaningful to you. The installed command does not change immediately:
@@ -128,15 +133,17 @@ ACR installs that guidance into your project; the kit supplied the ACR executabl
 Paste this prompt into the agent. These commands are instructions for it to run
 inside SBX, not a list to run on your laptop:
 
-> In the project directory, run acr --version. Install the public workshop policy
-> with `env -u GH_TOKEN -u GITHUB_TOKEN acr install github:shelajev/coding-policy@b85031eb0c8963b28b63eaa12efcbd34c850d32d --if-missing --non-interactive`.
-> If agents.yaml does not exist yet, add `--agent claude-code --agent codex --freshness none`
-> to that install command. Preserve existing package choices and guidance; ask me
-> before replacing any existing instructions. Then run
-> `env -u GH_TOKEN -u GITHUB_TOKEN acr realize --agent claude-code --agent codex`
-> and `env -u GH_TOKEN -u GITHUB_TOKEN acr check --agent claude-code --agent codex`.
-> Show me agents.yaml, AGENTS.md and the installed review-change skill. Explain
-> which file declares the package and which files tell an assistant how to work.
+```text
+In the project directory, run acr --version. Install the public workshop policy
+with `env -u GH_TOKEN -u GITHUB_TOKEN acr install github:shelajev/coding-policy@b85031eb0c8963b28b63eaa12efcbd34c850d32d --if-missing --non-interactive`.
+If agents.yaml does not exist yet, add `--agent claude-code --agent codex --freshness none`
+to that install command. Preserve existing package choices and guidance; ask me
+before replacing any existing instructions. Then run
+`env -u GH_TOKEN -u GITHUB_TOKEN acr realize --agent claude-code --agent codex`
+and `env -u GH_TOKEN -u GITHUB_TOKEN acr check --agent claude-code --agent codex`.
+Show me agents.yaml, AGENTS.md and the installed review-change skill. Explain
+which file declares the package and which files tell an assistant how to work.
+```
 
 `install` selects the pinned package. `realize` writes agent-facing guidance.
 `check` verifies that it matches the package. Clearing those two token variables
@@ -147,10 +154,12 @@ when downloading a public package. The sample project may already have
 Open `sample-app/AGENTS.md` in your host editor. The policy and skill are files in
 your shared project, so the next worker can use them too. Now ask the agent:
 
-> Read task-101 through Beans MCP. Read AGENTS.md and use the installed review-change
-> skill to review the warm-up against those requirements. Explain one rule you
-> checked and the code supporting your conclusion. Report a problem only if you
-> find one. Do not edit application code.
+```text
+Read task-101 through Beans MCP. Read AGENTS.md and use the installed review-change
+skill to review the warm-up against those requirements. Explain one rule you
+checked and the code supporting your conclusion. Report a problem only if you
+find one. Do not edit application code.
+```
 
 Look at the rule and the code it cites. Can you follow the reasoning? Installing
 instructions makes them available; checking the agent's review shows whether it

@@ -31,10 +31,12 @@ The task changes the board's result count to describe the current filter. Copy
 the printed requirements and acceptance criteria. Paste them into your running
 agent in `sbx-manual`, followed by:
 
-> Implement this task in the current project. Run the relevant checks inside
-> this sandbox, commit the change, and refresh the app on 0.0.0.0:8080 so I can
-> try it. Use `Workshop learner` and `workshop@example.invalid` as the Git author
-> if none is configured. Report what changed and how you checked it.
+```text
+Implement this task in the current project. Run the relevant checks inside
+this sandbox, commit the change, and refresh the app on 0.0.0.0:8080 so I can
+try it. Use `Workshop learner` and `workshop@example.invalid` as the Git author
+if none is configured. Report what changed and how you checked it.
+```
 
 Try the filters at <http://127.0.0.1:3102>. Open the changed file in your host
 editor. To see the commit on your laptop, run in HOST:
@@ -86,10 +88,12 @@ sbx mcp load beans --sandbox sbx-manual
 This is SBX configuration, not a per-agent MCP installation. Its gateway exposes
 the server's tools to the assistant. Ask the agent:
 
-> Use the Beans MCP tools to read the full body of task-101, including every
-> acceptance criterion. Compare those requirements with the
-> current code and the change we just made. Do not implement it twice or edit
-> anything. Show me the tool result and explain whether the change meets it.
+```text
+Use the Beans MCP tools to read the full body of task-101, including every
+acceptance criterion. Compare those requirements with the
+current code and the change we just made. Do not implement it twice or edit
+anything. Show me the tool result and explain whether the change meets it.
+```
 
 Compare the retrieved task with your earlier host output. You should see an
 actual tool call, not an answer recalled from the pasted text. If the tools are

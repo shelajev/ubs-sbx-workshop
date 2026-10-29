@@ -91,12 +91,14 @@ history shared. The team launcher introduced later performs this preparation.
 
 Ask the agent:
 
-> Run workshop-hello and acr --version. Read task-101 through Beans MCP, then
-> inspect the project and its AGENTS.md. Confirm whether the filter-count change
-> is present; do not implement it twice. Start the app and its supporting services
-> inside SBX on 0.0.0.0:8080. The environment already publishes it at
-> http://127.0.0.1:3102 on my laptop. Report what you found and how I can check it;
-> no additional port-publishing command is needed.
+```text
+Run workshop-hello and acr --version. Read task-101 through Beans MCP, then
+inspect the project and its AGENTS.md. Confirm whether the filter-count change
+is present; do not implement it twice. Start the app and its supporting services
+inside SBX on 0.0.0.0:8080. The environment already publishes it at
+http://127.0.0.1:3102 on my laptop. Report what you found and how I can check it;
+no additional port-publishing command is needed.
+```
 
 Open <http://127.0.0.1:3102>. You did not need a separate port-publishing command,
 MCP registration or kit-installation conversation. Your environment definition

@@ -2,6 +2,8 @@
 
 ## October 29, 2026
 
+- Make attendee agent prompts copyable and link kits and ACR to their documentation.
+
 - Use `sbx-*` sandbox names, `beans` for the first MCP connection and
   `task-101` through `task-104` across instructions, seeds and helper defaults.
   Publish the adapter as 0.1.2 with matching task examples and UBS download URLs.

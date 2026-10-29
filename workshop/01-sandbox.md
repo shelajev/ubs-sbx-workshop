@@ -64,7 +64,9 @@ A note outside the shared app.
 
 Ask Claude:
 
-> Create sandbox-message.txt in this project with the text "Hello from SBX".
+```text
+Create sandbox-message.txt in this project with the text "Hello from SBX".
+```
 
 Only `sample-app/` is mounted. Predict whether Claude can read the neighbouring
 host file, then enter this in **Claude's input**:
@@ -107,11 +109,13 @@ prepared. The team launcher introduced later includes this step for you.
 
 Give Claude this prompt:
 
-> Read README.md and get this application running inside the sandbox. Work out its
-> dependencies and start any supporting services using the Docker engine inside SBX.
-> Make the app available on 0.0.0.0:8080 and leave it running. Verify it responds.
-> I will publish that port as localhost:3102 on my laptop using the workshop
-> instructions. Do not change application code yet. Explain what you started and why.
+```text
+Read README.md and get this application running inside the sandbox. Work out its
+dependencies and start any supporting services using the Docker engine inside SBX.
+Make the app available on 0.0.0.0:8080 and leave it running. Verify it responds.
+I will publish that port as localhost:3102 on my laptop using the workshop
+instructions. Do not change application code yet. Explain what you started and why.
+```
 
 Watch how Claude gets the app running: which dependencies does it install, and
 which containers does it start? Ask it to explain a command you don't recognize.
