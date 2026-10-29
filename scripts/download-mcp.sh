@@ -7,7 +7,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 asset="$(beans_mcp_asset)"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
-url="https://github.com/shelajev/wad-sbx-workshop/releases/download/beans-mcp-v$BEANS_MCP_VERSION"
+url="https://github.com/shelajev/ubs-sbx-workshop/releases/download/beans-mcp-v$BEANS_MCP_VERSION"
 files=("$asset" LICENSE THIRD-PARTY-NOTICES.md release-manifest.json)
 for name in "${files[@]}" SHA256SUMS; do
   curl -fsSL --retry 3 "$url/$name" -o "$work/$name"

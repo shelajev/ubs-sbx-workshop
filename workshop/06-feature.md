@@ -9,7 +9,7 @@ already built, implement them, and leave evidence you can inspect.
 Read the next task in HOST:
 
 ```bash
-./scripts/beans show wad-102
+./scripts/beans show task-102
 ```
 
 It adds incident assignment and resolution. The task's acceptance criteria are
@@ -29,7 +29,7 @@ review it in the next environment plan.
 Replace `factory/chapter.env` with:
 
 ```text
-TASK=wad-102
+TASK=task-102
 MODE=mcp
 USE_ACR=1
 SESSION=shell
@@ -63,14 +63,14 @@ roles; you do not have to copy the developer's answer into QA yourself.
 Preview the environment from HOST:
 
 ```bash
-sbx env plan factory/sbxenv.yaml --env-arg name=wad-ch-05
+sbx env plan factory/sbxenv.yaml --env-arg name=sbx-ch-05
 ```
 
 Look for the project mount, Herdr and ACR kits, and the MCP command with its new
 note permission. In the SANDBOX tab, at the workshop root:
 
 ```bash
-./scripts/launch-factory.sh wad-ch-05
+./scripts/launch-factory.sh sbx-ch-05
 ```
 
 Read and approve the plan and the host MCP command. The launcher starts the
@@ -103,7 +103,7 @@ When the team reports readiness, open <http://127.0.0.1:3102>. Try assigning and
 resolving an incident. In HOST, read the task again:
 
 ```bash
-./scripts/beans show wad-102
+./scripts/beans show task-102
 ```
 
 Look for the result note, including the commit and actual check outcomes. Inspect
@@ -112,7 +112,7 @@ trying the behavior and reading the evidence.
 
 To save recurring browser-download access as a kit, continue with the kit
 definition in [browser access](../chapters/05-mcp/README.md#5-let-the-human-handle-a-request-for-more-access).
-That extension uses this running `wad-ch-05` team and your existing `factory/`
+That extension uses this running `sbx-ch-05` team and your existing `factory/`
 configuration. Return here for cleanup.
 
 ## 4. Finish this environment
@@ -121,12 +121,12 @@ When the team is done, Ctrl-C leaves the message view and `exit` leaves the
 sandbox shell. In HOST:
 
 ```bash
-sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-05
+sbx env rm factory/sbxenv.yaml --env-arg name=sbx-ch-05
 ```
 
 Review the destroy plan. SBX 0.50.0 also removes the environment's local MCP
 command. If recovering an older installation, inspect `sbx mcp ls` and remove
-only a remaining `wad-ch-05-beans` with `sbx mcp rm wad-ch-05-beans`.
+only a remaining `sbx-ch-05-beans` with `sbx mcp rm sbx-ch-05-beans`.
 
 If you want to continue without waiting for implementation, finish cleanup first,
 then install the completed feature checkpoint from HOST:

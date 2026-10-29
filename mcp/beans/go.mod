@@ -1,4 +1,4 @@
-module github.com/shelajev/wad-sbx-workshop/mcp/beans
+module github.com/shelajev/ubs-sbx-workshop/mcp/beans
 
 go 1.26
 

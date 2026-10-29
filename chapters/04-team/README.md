@@ -66,7 +66,7 @@ Keep `MODE=manual`, `SESSION=shell` and `USE_ACR=1` in `factory/chapter.env`.
 In the SANDBOX tab, at the workshop root:
 
 ```bash
-./scripts/launch-factory.sh wad-ch-04
+./scripts/launch-factory.sh sbx-ch-04
 ```
 
 ## 3. Start the sessions and understand what that means
@@ -178,7 +178,7 @@ In HOST, set `MODE=team` in `factory/chapter.env`. A future launch now runs
 Type `exit` in the SANDBOX shell. In HOST:
 
 ```bash
-sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-04
+sbx env rm factory/sbxenv.yaml --env-arg name=sbx-ch-04
 ```
 
 We have a team that can discuss work. Next we give it a controlled connection to

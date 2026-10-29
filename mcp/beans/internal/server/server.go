@@ -14,7 +14,7 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/shelajev/wad-sbx-workshop/mcp/beans/internal/backlog"
+	"github.com/shelajev/ubs-sbx-workshop/mcp/beans/internal/backlog"
 )
 
 // Version is set at build time with -ldflags "-X .../internal/server.Version=...".
@@ -25,7 +25,7 @@ const ServerName = "workshop-beans"
 
 // GetTaskArgs is the get_task input schema.
 type GetTaskArgs struct {
-	ID string `json:"id" jsonschema:"the workshop task id, for example wad-102"`
+	ID string `json:"id" jsonschema:"the workshop task id, for example task-102"`
 }
 
 // ListTasksArgs is the complete list_tasks input schema. There is no free-text query

@@ -5,8 +5,8 @@ import (
 	"regexp"
 )
 
-// taskIDPattern is deliberately narrow. Beans generates ids like "wad-a1b2" and the
-// workshop seeds ids like "wad-101"; nothing else is accepted. In particular an id
+// taskIDPattern is deliberately narrow. Beans generates ids like "task-a1b2" and the
+// workshop seeds ids like "task-101"; nothing else is accepted. In particular an id
 // can never begin with '-', so it can never be mistaken for a CLI flag, and it can
 // never contain a path separator or shell metacharacter.
 var taskIDPattern = regexp.MustCompile(`^[a-z0-9]{1,24}(-[a-z0-9]{1,24}){1,3}$`)
@@ -24,7 +24,7 @@ func ValidateTaskID(id string) error {
 	}
 	if !taskIDPattern.MatchString(id) {
 		return newError(CodeInvalidID,
-			"task id must look like wad-101: lowercase letters and digits in 2 to 4 dash-separated groups", "")
+			"task id must look like task-101: lowercase letters and digits in 2 to 4 dash-separated groups", "")
 	}
 	return nil
 }

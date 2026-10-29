@@ -18,12 +18,12 @@ checkpoint before you continue.
 Read the next task in HOST:
 
 ```bash
-./scripts/beans show wad-103
+./scripts/beans show task-103
 ```
 
 Find the requirement about reopening an incident. The team needs your answer
 about the current resolution note before it can decide what behavior to implement.
-Change the `TASK` line to `TASK=wad-103` in `factory/chapter.env`. Keep `MODE=mcp`,
+Change the `TASK` line to `TASK=task-103` in `factory/chapter.env`. Keep `MODE=mcp`,
 `USE_ACR=1` and `SESSION=shell`. Keep the existing prompt and append this paragraph
 to `factory/PROMPT.md`:
 
@@ -35,12 +35,12 @@ implementation and review. Preserve the historical resolution entry either way.
 ```
 
 The existing prompt reads the task ID supplied by `TASK`, so it now asks for
-`wad-103`. The added paragraph tells the team which decision belongs to you.
+`task-103`. The added paragraph tells the team which decision belongs to you.
 The environment, tools and team are the same.
 In the SANDBOX tab, at the workshop root:
 
 ```bash
-./scripts/launch-factory.sh wad-ch-06
+./scripts/launch-factory.sh sbx-ch-06
 ```
 
 Then in its sandbox shell:
@@ -66,13 +66,13 @@ sbx setup ssh
 On macOS or Linux, connect with:
 
 ```bash
-ssh wad-ch-06.sbx
+ssh sbx-ch-06.sbx
 ```
 
 On Windows, use the native Windows OpenSSH client from Git Bash:
 
 ```bash
-/c/Windows/System32/OpenSSH/ssh.exe wad-ch-06.sbx
+/c/Windows/System32/OpenSSH/ssh.exe sbx-ch-06.sbx
 ```
 
 Use this full path so you get the Windows client configured in chapter 0.
@@ -121,12 +121,12 @@ Once the team is finished, leave its message view and type `exit` in the origina
 SANDBOX tab. In HOST:
 
 ```bash
-sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-06
+sbx env rm factory/sbxenv.yaml --env-arg name=sbx-ch-06
 ```
 
 Review the destroy plan. SBX 0.50.0 also removes the local MCP command registered
-by this environment. If an older or manually registered `wad-ch-06-beans` entry
-remains in `sbx mcp ls`, remove that entry with `sbx mcp rm wad-ch-06-beans`.
+by this environment. If an older or manually registered `sbx-ch-06-beans` entry
+remains in `sbx mcp ls`, remove that entry with `sbx mcp rm sbx-ch-06-beans`.
 
 For the next project, you can answer product questions through the same team
 conversation. If an agent needs more network access, use the host policy controls

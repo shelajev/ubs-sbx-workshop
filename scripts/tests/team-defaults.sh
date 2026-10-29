@@ -47,8 +47,8 @@ fi
 STUB
 chmod +x "$fixture/.local/chapters/bin/beans" "$fixture/scripts/beans" "$scratch/bin/sbx"
 WORKSHOP_LAUNCH_ARGS="$scratch/create-args" PATH="$scratch/bin:$PATH" \
-  bash "$fixture/chapters/support/launch" "$fixture/factory" wad-launch-test
-printf '%s\n' env create "$fixture/factory/sbxenv.yaml" --env-arg name=wad-launch-test \
+  bash "$fixture/chapters/support/launch" "$fixture/factory" sbx-launch-test
+printf '%s\n' env create "$fixture/factory/sbxenv.yaml" --env-arg name=sbx-launch-test \
   --env-arg "app=$fixture/sample-app" > "$scratch/expected-args"
 diff -u "$scratch/expected-args" "$scratch/create-args"
 echo 'PASS: all-Claude catch-up, preserved choices and interactive launch approval.'

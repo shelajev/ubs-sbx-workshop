@@ -8,7 +8,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
   || die 'Usage: scripts/get-materials.sh [--app-only]'
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
-release_url="https://github.com/shelajev/wad-sbx-workshop/releases/download/materials-v0.1.0"
+release_url="https://github.com/shelajev/ubs-sbx-workshop/releases/download/materials-v0.1.0"
 for name in incident-triage-board.bundle SHA256SUMS; do
   curl --fail --location --silent --show-error --retry 3 "$release_url/$name" --output "$work/$name"
 done

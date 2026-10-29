@@ -2,91 +2,92 @@
 
 [Open the Google Slides deck](https://docs.google.com/presentation/d/1OLvxvAt-lByz606_1s37lgpuPQJ-SLFfcR18zrUBh9Q/edit)
 
-An approximately eight-minute introduction before chapter00. The Google Slides deck includes these speaker notes.
+A ten-minute introduction followed by eighty minutes of hands-on work. These are
+the speaker notes for the ten slides in the Google Slides deck.
 
-## 1. Build a software factory
+## 1. Safety, speed, and governance in the agentic era
 
-Opening, about 30 seconds.
-The session title is “Docker's Agentic Platform: Sandboxes, MCP, and the Infrastructure of Autonomous Development.” Today we will assemble our own small software factory using Docker Sandboxes and supporting tools. Start with one coding agent, give it an environment where it can act, then grow it into a team you can give work.
-We are using platform building blocks. The factory is the system we build together, not the name of a packaged Docker product.
-Source: workshop README and the agreed session brief.
+About 40 seconds.
+A personal software factory gives you a way to hand off more of the work between an idea and a change you can inspect. You choose the task and the access it needs. The agent gets an environment where it can work, and you keep the reusable setup for your next project.
+Today we have 90 minutes: ten minutes of introduction, then hands-on work. We will build the foundation with one agent. The guide continues into teams and human decisions when you are ready.
+Source: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/README.md
 
 ## 2. What can your agent touch?
 
-About 40 seconds.
-Quick show of hands: who has run a coding assistant with permission prompts disabled? What could it reach when you did that?
-That is our starting point. Agents need to install dependencies, change files, run tests and start services. SBX gives us an execution boundary, with explicit decisions about shared files and network access. We will inspect that boundary rather than assume that “YOLO” makes it disappear.
-An intentionally mounted directory is still shared. Isolation is not a promise that every resource you grant access to is protected from changes.
-Source: chapters/01-agent/README.md.
+About 60 seconds, including a show of hands.
+Who has run a coding assistant with permission prompts disabled? What could it reach?
+Agents need to install dependencies, edit files and start services. Docker Sandboxes gives them an execution environment with explicit shared directories and network controls. An intentionally mounted directory remains shared, so changes there affect your project.
+In the first exercise, run the commands and compare what you can see from the host and sandbox. Inspect the full policy table and find the relevant rows. We will observe the boundary ourselves.
+Source: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/01-sandbox.md
 
 ## 3. A task becomes a reviewed change
 
-About 45 seconds.
-Our host starts the sandbox and supplies the project and task. Inside, a coordinator routes work, a developer implements it, and QA reviews the exact commit. The developer records the outcome back in our host backlog through MCP.
-The agents inspect the repository and work out its dependencies and startup commands. Containers they need run inside SBX. The host launcher does not set up Node or PostgreSQL for them.
-When the work is done we inspect the changes in the same mounted working copy. There is no extra host judge that accepts changes or closes tasks automatically.
-Source: chapters/support/launch, chapters/support/bin/prepare, chapters/support/roles, chapters/05-mcp/PROMPT.md, chapters/07-factory/README.md.
+About 75 seconds. Trace Task, Factory, Result, then Human.
+A task goes in. The system runs the project, changes it and checks the result. You get a change you can inspect, together with the checks and any unresolved questions. You still decide whether to accept it.
+The human connection stays in the picture. You supply the goal, choose access and answer questions the task did not settle. As the factory grows, separate roles can pass work between themselves without you carrying every intermediate message.
+We will build toward that picture in stages. Today the useful foundation is one working agent, a task connection and an environment you can recreate. The team is a continuation in the guide.
+The payoff is having your own setup to use again: different tasks and projects can use the same tools, guidance and boundaries.
+Source: https://github.com/shelajev/ubs-sbx-workshop/blob/main/README.md
 
-## 4. A small app with real dependencies
+## 4. A project for our agents to work on
 
-About 35 seconds.
-This is our shared sample application: a browser UI for tracking incidents, with an API and PostgreSQL. It gives agents real development work: install packages, run a database container, change behavior and test it. A published sandbox port lets us try the result in our browser.
-We are building a coding factory. The agents implement features in this sample app; they are not an incident-response team operating production services. Later we replace this repository and task with our own.
-Screenshot: chapters/images/incident-triage-board.png. Source: chapters/00-setup/README.md and chapters/01-agent/README.md.
+About 40 seconds.
+This is our sample project: an incident list with a browser interface, an API and PostgreSQL. It gives the agent dependencies to install and a database container to run inside SBX. A published port lets us reach it from the host browser.
+Our first task is a small change to the filtered incident count. We will paste the task, then connect the same backlog through MCP so the agent can retrieve requirements itself.
+The app gives us something concrete to observe. Later exercises add assignment and resolution, then a reopening task with a human product decision.
+Sources: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/01-sandbox.md and workshop/02-tasks.md
 
 ## 5. Host and sandbox
 
-About 55 seconds.
-Keep this boundary in mind throughout. Beans, our file-based task tracker, stays on the host. A small script creates the sandbox from an SBX environment file and mounts the application working directory. The agents work inside that environment and run any containers there.
-We do not need Docker Desktop or a host Docker engine. Every chapter uses the same mounted working copy, including its Git history. We replace sandbox environments as their capabilities grow; edits remain in the project on the host.
-MCP supplies selected host operations; it does not mount the whole backlog directory. SSH lets us join the existing environment when a human decision is needed.
-Source: chapters/01-agent, chapters/02-launcher, chapters/05-mcp, chapters/06-human.
+About 75 seconds.
+Your project files and the Beans task backlog stay on your laptop. Start SBX manually from a host terminal and mount the sample project. The agent installs dependencies and runs its application processes and Docker containers inside the sandbox.
+Edits to the mounted project are visible on the host. Replacing a sandbox does not discard those source edits. Later, sbxenv records the environment so we can recreate it with the same kits, workspace, port and MCP connection.
+For the first task, paste its requirements. Then configure MCP through SBX on the host. The agent can ask the gateway to retrieve a task from Beans without mounting the backlog directory into the sandbox. The adapter runs on the host and is part of the access you grant.
+We will compare files across the boundary and open the app through a published port. Keep host and sandbox terminals clearly separated as you follow the guide.
+Sources: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/01-sandbox.md, workshop/02-tasks.md and workshop/04-environment.md
 
-## 6. Each step solves the next problem
+## 6. Today and the continuation
+
+About 90 seconds.
+The introduction takes ten minutes, leaving eighty for hands-on work. The target is a repeatable single-agent environment. Follow the guide at your pace; it remains available after the session.
+First, run SBX manually. Observe the shared-file boundary, inspect network policy, run Docker inside SBX and reach the app from the host.
+Second, paste a Beans task and observe the change in your host working directory. Connect Beans through SBX-managed MCP, then ask the agent to read that same task by ID.
+Third, build a small kit yourself. Change it and recreate the sandbox to see when setup takes effect. Add ACR so the environment can install versioned coding guidance and a review skill.
+Fourth, capture the workspace, kits, port and MCP connection in sbxenv and recreate the environment. These files and kits are the main takeaways from today.
+After today, continue into Herdr, separate Claude roles, a feature and a human decision. Other model providers and host orchestration are later options.
+Source: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/README.md
+
+## 7. Reusable tools and guidance
+
+About 85 seconds.
+A kit lets you describe tools and setup that a fresh sandbox should receive. We will make a tiny command, install it through a kit, then edit the kit and recreate the sandbox. That makes the lifecycle visible before adding more tools.
+The ACR kit installs the package manager. You then ask the agent to use ACR to install a pinned coding-policy package and make its rules and review skill available. The kit and the guidance package have separate jobs.
+Finally, sbxenv records how the environment fits together: which project to mount, which kits to apply, which port to publish and which MCP connection to load. Recreate the environment and check that those choices come back.
+You leave with configuration you can adapt for your own tools and project. In the continuation, a Herdr kit adds the sessions used by the team.
+Beans, ACR and Herdr are my tool choices for this example. Docker Sandboxes supplies the environment, kits, network controls and MCP gateway.
+Sources: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/03-kits.md and workshop/04-environment.md
+
+## 8. Later: a team of Claude sessions
+
+About 45 seconds. Preview of the continuation.
+Once the environment is repeatable, give separate sessions different responsibilities. The coordinator routes work and asks for decisions, the developer implements and checks the change, and QA reviews the exact commit against the task.
+The supplied team uses three Claude Code sessions, all with Sonnet and the same Claude subscription. Herdr manages their sessions and message delivery. You can inspect the messages and follow a task through review.
+For today's single-agent work, Claude or Codex access is suitable. The documented team continuation uses Claude. Trying another provider or host orchestration comes later.
+Source: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/05-team.md
+
+## 9. Access to tools, networks and people
 
 About 60 seconds.
-First, run an agent manually and inspect its access. Next, make that environment repeatable with sbxenv and a small launcher. Add a simple kit, then ACR to distribute coding guidance.
-Now give three Claude Code sessions separate responsibilities using the same account and Sonnet model. Add Herdr, role instructions, file messages and explicit wakeups so those conversations can coordinate.
-The team needs a live task and somewhere to report the result: connect a small host Beans server through SBX's MCP gateway. Inspect its limited tool surface and make a deliberate network-access decision. Join through SSH when the team needs a human answer.
-Finally, keep this environment and bring another project and task. Every chapter leaves something working that the next one extends.
-Source: chapters/README.md.
+MCP lets the agent use selected host operations. We start with read-only Beans tools to list and retrieve tasks. Later, the feature exercise enables appending a result note. SBX manages the connection, while the adapter runs on the host.
+Network access is a separate decision. Inspect the full policy table and find the relevant row. When a request is blocked, identify the destination and decide whether the task needs that access.
+A product ambiguity needs a human answer rather than a network rule. In the continuation, join the existing team through SSH, read its question and send a decision. The team records the answer and continues.
+Sources: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/02-tasks.md, workshop/06-feature.md and workshop/07-human.md
 
-## 7. The environment grows with the job
+## 10. Let’s build it
 
-About 55 seconds.
-We try a tiny hello-world kit first so the mechanism is visible. Then ACR supplies the skill and coding policy. The policy package and the kit are different things: the kit installs the tool that retrieves and materializes the guidance.
-We add Herdr as a mixin for session management. Pi is an optional extension for trying another assistant afterward. A template supplies the base image; kits layer the tools and settings onto it. We discuss templates without asking everyone to build an image.
-These are technologies you can reuse with a different set of tools. Beans, ACR, Herdr, Pi and this workflow are my choices for the workshop, not third-party endorsements by Docker. Docker Agent is another team framework you could run inside SBX.
-Sources: chapters/02.5-acr/README.md, chapters/03-pi/README.md, chapters/04-team/README.md, README.md. Docker Agent: https://docs.docker.com/ai/docker-agent/
-
-## 8. One team, separate responsibilities
-
-About 55 seconds.
-SBX is also a place to try new assistants and models without installing their tool stacks on your laptop. Keep the project, task and guidance the same, then compare what each assistant actually does. Tools and processes live in the sandbox; edits to the mounted project persist.
-Our default team uses Claude Code for coordinator, developer and QA, with Sonnet in all three roles. One Claude subscription supplies model access; the conversations have different responsibilities. File messages carry the durable handoff; Herdr manages sessions and delivers the wakeup. We do not equate a status indicator with completed work.
-Everyone inspects the roles without configuring another provider. The mixed-provider variation is an optional presenter demonstration or take-home exercise. It is not needed for the MCP or human-decision chapters.
-Source: chapters/04-team/team.tsv, chapters/04-team/team-mixed.tsv, chapters/03-pi/MIXED-MODELS.md.
-
-## 9. Useful work needs explicit access
-
-About 55 seconds.
-Our MCP server has a small job: list tasks, read a task, append a result note to the disposable backlog. It has no separate OAuth setup. SBX connects the host stdio process to the sandbox. The server itself still runs with host-user permissions, so the narrow adapter is part of what we trust.
-A legitimate download can be blocked. We read the denial and decide whether to allow that destination for this sandbox. A product ambiguity is a different issue: use SSH and the handoff protocol to supply a human answer without replacing the team.
-At the end I can demonstrate organization governance, cloud execution and live mounts on my account. You do not need organization enrollment or cloud access for the attendee path.
-Source: chapters/05-mcp/README.md, chapters/06-human/README.md, chapters/08-presenter/README.md.
-
-## 10. What you need today
-
-About 45 seconds.
-Complete installation, downloads and the first successful Claude response beforehand when possible; we leave time for troubleshooting. Bring up the instructions and keep a host terminal ready. The hands-on path targets macOS on Apple silicon or Windows x64 with Git Bash and SBX v0.50.0. Application commands and containers run inside the sandbox.
-Docker login and Claude login are separate. The main path uses your Claude subscription for every role, with no additional provider or API key. Check the account requirements in chapter00; we will verify a response before starting the team. We are not supplying model accounts.
-Commands are labelled HOST, SANDBOX or the assistant name. Keep the launch terminal open and use another terminal to inspect the running environment. Stop the previous sandbox before reusing port3102. If a coding job takes longer, use the supplied sample-app checkpoint and continue learning the infrastructure.
-Source: chapters/00-setup/README.md and chapters/README.md.
-
-## 11. Let's build it
-
-Transition to hands-on work, about 20 seconds.
-Open the repository and start with chapter00. We will get SBX installed and model access working, then let one agent inspect and run the sample application. Keep the question from the start in view: what can it touch, and how do we choose that deliberately?
-Your take-home artifact is the growing factory configuration. Chapter07 shows how to give it another repository and a task of your own.
+About 30 seconds. Transition to hands-on work.
+Open the repository and click Start the workshop. Begin with setup if needed, then Run an agent manually. You need your own model-provider access; a Claude subscription or a ChatGPT subscription with Codex access works for the single-agent exercises.
+Keep the guide and a host terminal open. We will work toward reusable kits and an environment we can recreate. Continue building the factory afterward with the linked team and human-decision exercises.
 Workshop: https://github.com/shelajev/ubs-sbx-workshop
+Guide: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/README.md
 Setup: https://github.com/shelajev/ubs-sbx-workshop/blob/main/workshop/00-setup.md

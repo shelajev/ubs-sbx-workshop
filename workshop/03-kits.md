@@ -41,7 +41,7 @@ A valid result means SBX accepts its structure. Now try its effect in your
 SANDBOX tab, starting at the workshop root:
 
 ```bash
-sbx run claude "$(pwd)/sample-app" --name wad-kit-first --skills off --cpus 4 --memory 8g --kit ./factory/hello-kit
+sbx run claude "$(pwd)/sample-app" --name sbx-kit-first --skills off --cpus 4 --memory 8g --kit ./factory/hello-kit
 ```
 
 Use `codex` instead of `claude` if that is your chosen assistant. `--kit` adds
@@ -55,12 +55,12 @@ kit setup runs when SBX creates the environment. Leave the agent and remove the
 sandbox in HOST:
 
 ```bash
-sbx rm wad-kit-first
+sbx rm sbx-kit-first
 ```
 
 Run the same `sbx run` command again and ask for the greeting. Your new text
 should appear. You have packaged a tool that each new worker receives without
-an installation prompt. Exit the agent and remove `wad-kit-first` again before
+an installation prompt. Exit the agent and remove `sbx-kit-first` again before
 continuing.
 
 A real project kit could install a pinned database migration CLI, a test runner,
@@ -91,7 +91,7 @@ it is separate from the sandbox's runtime network policy.
 Create your next sandbox in the SANDBOX tab:
 
 ```bash
-sbx run claude "$(pwd)/sample-app" --name wad-guidance --skills off --cpus 4 --memory 8g --kit ./factory/hello-kit --kit 'git+https://github.com/shelajev/acr-sbx-kit.git#ref=f446b95bccabd879912db174c190ff09377b7c7b'
+sbx run claude "$(pwd)/sample-app" --name sbx-guidance --skills off --cpus 4 --memory 8g --kit ./factory/hello-kit --kit 'git+https://github.com/shelajev/acr-sbx-kit.git#ref=f446b95bccabd879912db174c190ff09377b7c7b'
 ```
 
 Again, choose `codex` in place of `claude` if needed. You are combining your own
@@ -106,14 +106,14 @@ Attach the task connection in HOST so the new agent can review against the
 original requirements:
 
 ```bash
-sbx mcp load wad-beans --sandbox wad-guidance
+sbx mcp load beans --sandbox sbx-guidance
 ```
 
 On **Windows**, prepare dependency storage for this fresh sandbox before the
 review skill runs application checks. In HOST Git Bash:
 
 ```bash
-./scripts/prepare-workspace.sh wad-guidance
+./scripts/prepare-workspace.sh sbx-guidance
 ```
 
 Read the storage path the helper reports. Your source stays shared; npm will
@@ -147,7 +147,7 @@ when downloading a public package. The sample project may already have
 Open `sample-app/AGENTS.md` in your host editor. The policy and skill are files in
 your shared project, so the next worker can use them too. Now ask the agent:
 
-> Read wad-101 through Beans MCP. Read AGENTS.md and use the installed review-change
+> Read task-101 through Beans MCP. Read AGENTS.md and use the installed review-change
 > skill to review the warm-up against those requirements. Explain one rule you
 > checked and the code supporting your conclusion. Report a problem only if you
 > find one. Do not edit application code.
@@ -161,7 +161,7 @@ actually used them.
 Exit the agent. In HOST, remove the sandbox:
 
 ```bash
-sbx rm wad-guidance
+sbx rm sbx-guidance
 ```
 
 The kit definition stays in `factory/`; the generated guidance stays in
@@ -169,7 +169,7 @@ The kit definition stays in `factory/`; the generated guidance stays in
 its definition into an environment file:
 
 ```bash
-sbx mcp rm wad-beans
+sbx mcp rm beans
 ```
 
 You have built one kit and composed it with another. Next you will record those

@@ -12,7 +12,7 @@ From the workshop repository root:
 
 ```bash
 # SANDBOX tab — before connecting, from the workshop repository
-sbx run claude "$(pwd)/sample-app" --name wad-manual --skills off --cpus 4 --memory 8g
+sbx run claude "$(pwd)/sample-app" --name sbx-manual --skills off --cpus 4 --memory 8g
 ```
 
 `claude` chooses the agent, `"$(pwd)/sample-app"` gives the full path to the sample
@@ -91,7 +91,7 @@ inside the mounted directory. Remove the demonstration file from Claude:
 On Windows, first run this in your **HOST Git Bash tab**, from the workshop root:
 
 ```bash
-./scripts/prepare-workspace.sh wad-manual
+./scripts/prepare-workspace.sh sbx-manual
 ```
 
 On Windows, this gives npm dependencies their own storage inside the sandbox,
@@ -125,7 +125,7 @@ Then publish the web port from your HOST tab:
 
 ```bash
 # HOST
-sbx ports wad-manual --publish 3102:8080
+sbx ports sbx-manual --publish 3102:8080
 ```
 
 `3102:8080` connects port 3102 on your host to port 8080 in this sandbox.
@@ -165,7 +165,7 @@ In HOST, remove the sandbox:
 
 ```bash
 # HOST
-sbx rm wad-manual
+sbx rm sbx-manual
 ```
 
 The sandbox is gone, but you can still open the changed code and its Git commit
@@ -174,7 +174,7 @@ and a written task.
 
 ## Skip to the completed chapter
 
-To skip to the completed exercise, exit and remove `wad-manual` if it exists. Then run
+To skip to the completed exercise, exit and remove `sbx-manual` if it exists. Then run
 this from the workshop repository:
 
 ```bash

@@ -3,16 +3,16 @@ package backlog
 import "testing"
 
 func TestValidateTaskID(t *testing.T) {
-	valid := []string{"wad-101", "wad-a1b2", "workshop-task-01", "a-b", "wad-101-extra-bits"}
+	valid := []string{"task-101", "task-a1b2", "workshop-task-01", "a-b", "task-101-extra-bits"}
 	for _, id := range valid {
 		if err := ValidateTaskID(id); err != nil {
 			t.Errorf("ValidateTaskID(%q) = %v, want nil", id, err)
 		}
 	}
 	invalid := []string{
-		"", "wad", "WAD-101", "wad_101", "wad 101", "-wad-101", "wad-101-",
-		"../etc/passwd", "wad-101;id", "$(id)", "wad-101|cat", "--beans-path",
-		"a-b-c-d-e", "wad-101\n", "wad-101/../other",
+		"", "task", "TASK-101", "task_101", "task 101", "-task-101", "task-101-",
+		"../etc/passwd", "task-101;id", "$(id)", "task-101|cat", "--beans-path",
+		"a-b-c-d-e", "task-101\n", "task-101/../other",
 	}
 	for _, id := range invalid {
 		if err := ValidateTaskID(id); err == nil {

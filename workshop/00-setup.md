@@ -149,7 +149,7 @@ you and the agents will work on. You should also find `host-only.txt` at the
 workshop root; you'll use it to test what a sandbox can see.
 
 The script downloads the app and its catch-up checkpoints from the pinned
-[materials-v0.1.0 GitHub release](https://github.com/shelajev/wad-sbx-workshop/releases/tag/materials-v0.1.0).
+[materials-v0.1.0 GitHub release](https://github.com/shelajev/ubs-sbx-workshop/releases/tag/materials-v0.1.0).
 It verifies the download, keeps the checkpoint repository in `.local/app/`, and
 creates your editable copy in `sample-app/`. It also downloads the prebuilt Beans
 MCP adapter into `dist/` for step 2. You do not need to open or edit `.local/app/`.

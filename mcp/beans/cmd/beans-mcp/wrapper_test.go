@@ -25,12 +25,12 @@ func TestWorkshopWrapper(t *testing.T) {
 		t.Fatalf("wrapper failed: %v\n%s", err, stderr.String())
 	}
 	defer session.Close()
-	result, err := session.CallTool(ctx(t), &mcp.CallToolParams{Name: "get_task", Arguments: map[string]any{"id": "wad-101"}})
+	result, err := session.CallTool(ctx(t), &mcp.CallToolParams{Name: "get_task", Arguments: map[string]any{"id": "task-101"}})
 	if err != nil || result.IsError {
 		t.Fatalf("wrapper read: result=%v error=%v", result, err)
 	}
 	note := "Native wrapper verified: café, 日本語, \"quotes\".\nSecond line."
-	result, err = session.CallTool(ctx(t), &mcp.CallToolParams{Name: "add_task_note", Arguments: map[string]any{"id": "wad-101", "note": note}})
+	result, err = session.CallTool(ctx(t), &mcp.CallToolParams{Name: "add_task_note", Arguments: map[string]any{"id": "task-101", "note": note}})
 	if err != nil || result.IsError {
 		t.Fatalf("wrapper write: result=%v error=%v", result, err)
 	}

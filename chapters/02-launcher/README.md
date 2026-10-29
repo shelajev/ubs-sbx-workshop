@@ -19,7 +19,7 @@ Create `factory/sbxenv.yaml` in your editor:
 
 ```yaml
 schemaVersion: "1"
-name: wad-env-first
+name: sbx-env-first
 agent: claude
 workspace: ../sample-app
 sandboxOptions:
@@ -85,15 +85,15 @@ In HOST, install the pinned CLI and initialize the supplied workshop tasks:
 
 The first helper downloads Beans. The second creates our four demo tasks under
 `.local/chapters/beans/`. `--disposable` marks this as practice data that our later
-MCP server may append notes to. Chapters 1–7 walk through `wad-101` to `wad-103`;
-`wad-104` is an optional take-home or presenter exercise for extending the incident
+MCP server may append notes to. Chapters 1–7 walk through `task-101` to `task-103`;
+`task-104` is an optional take-home or presenter exercise for extending the incident
 table with a service column and filter.
 
 Try the CLI:
 
 ```bash
 ./scripts/beans list
-./scripts/beans show wad-101
+./scripts/beans show task-101
 ./scripts/beans create "Try a small improvement" --type task --status todo
 ```
 
@@ -130,7 +130,7 @@ chapter 7 will show how to select another project.
 Create `factory/chapter.env`:
 
 ```text
-TASK=wad-101
+TASK=task-101
 MODE=manual
 USE_ACR=0
 SESSION=claude
@@ -141,7 +141,7 @@ launcher, which connects a task to that environment:
 
 | Setting | What it tells the launcher |
 |---|---|
-| `TASK=wad-101` | Read the filter-count task from our host backlog. |
+| `TASK=task-101` | Read the filter-count task from our host backlog. |
 | `MODE=manual` | Let us work with the assistant ourselves. |
 | `USE_ACR=0` | Leave coding-policy installation for the next chapter. |
 | `SESSION=claude` | Open Claude after preparing the sandbox. |
@@ -163,16 +163,16 @@ Your environment file supplies the workspace where it can inspect that code.
 Preview the configuration in HOST:
 
 ```bash
-sbx env plan factory/sbxenv.yaml --env-arg name=wad-ch-02
+sbx env plan factory/sbxenv.yaml --env-arg name=sbx-ch-02
 ```
 
 Then in the SANDBOX tab, at the workshop root:
 
 ```bash
-./scripts/launch-factory.sh wad-ch-02
+./scripts/launch-factory.sh sbx-ch-02
 ```
 
-The launcher creates `wad-ch-02` and opens Claude in `sample-app/`. It gives Claude
+The launcher creates `sbx-ch-02` and opens Claude in `sample-app/`. It gives Claude
 the selected task as `~/work/task.json` and your prompt as `~/work/PROMPT.md`.
 The launcher does not implement or verify the task for you. Tell Claude:
 
@@ -184,7 +184,7 @@ and Git history are still in `sample-app/`.
 Type `/exit` to end the session. In HOST:
 
 ```bash
-sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-02
+sbx env rm factory/sbxenv.yaml --env-arg name=sbx-ch-02
 ```
 
 Next: [give each worker shared guidance through a kit](../02.5-acr/README.md).

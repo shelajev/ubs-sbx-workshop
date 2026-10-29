@@ -40,7 +40,7 @@ A valid result means SBX accepts its structure. Now try its actual effect in you
 SANDBOX tab, starting at the workshop root:
 
 ```bash
-sbx run claude "$(pwd)/sample-app" --name wad-kit-first --skills off --cpus 4 --memory 8g --kit ./factory/hello-kit
+sbx run claude "$(pwd)/sample-app" --name sbx-kit-first --skills off --cpus 4 --memory 8g --kit ./factory/hello-kit
 ```
 
 `--kit` adds our installation step to the built-in Claude environment. In Claude:
@@ -53,7 +53,7 @@ Expect `Hello from a kit`. The tool was installed during sandbox creation as par
 of the kit setup. Exit with `/exit`. In HOST:
 
 ```bash
-sbx rm wad-kit-first
+sbx rm sbx-kit-first
 ```
 
 ## 2. Use a kit to supply a real tool
@@ -97,13 +97,13 @@ to install the guidance together before automating it.
 In HOST:
 
 ```bash
-sbx env plan factory/sbxenv.yaml --env-arg name=wad-ch-02-5
+sbx env plan factory/sbxenv.yaml --env-arg name=sbx-ch-02-5
 ```
 
 Find the ACR kit and the unchanged application mount. In your SANDBOX tab:
 
 ```bash
-./scripts/launch-factory.sh wad-ch-02-5
+./scripts/launch-factory.sh sbx-ch-02-5
 ```
 
 SBX may also ask you to approve the kit's credential bindings. In the linked kit's
@@ -166,7 +166,7 @@ of silently replacing it.
 Exit Claude. In HOST:
 
 ```bash
-sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-02-5
+sbx env rm factory/sbxenv.yaml --env-arg name=sbx-ch-02-5
 ```
 
 We now have a repeatable environment and shared coding guidance. Next we will give

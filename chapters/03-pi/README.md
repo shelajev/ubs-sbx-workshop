@@ -57,13 +57,13 @@ ourselves; `MODE=manual` and `USE_ACR=1` stay as they are.
 In HOST:
 
 ```bash
-sbx env plan factory/sbxenv.yaml --env-arg name=wad-ch-03
+sbx env plan factory/sbxenv.yaml --env-arg name=sbx-ch-03
 ```
 
 Check that both kits and the same application mount appear. In the SANDBOX tab:
 
 ```bash
-./scripts/launch-factory.sh wad-ch-03
+./scripts/launch-factory.sh sbx-ch-03
 ```
 
 The launcher opens an interactive shell inside SBX, already in the mounted project.
@@ -170,7 +170,7 @@ conversation, your SANDBOX tab is already at its shell prompt.
 Type `exit` in the SANDBOX shell to return to the host. In HOST:
 
 ```bash
-sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-03
+sbx env rm factory/sbxenv.yaml --env-arg name=sbx-ch-03
 ```
 
 Next: [give the assistants roles and communication](../04-team/README.md).

@@ -12,7 +12,7 @@ sbx env plan "$root/chapters/examples/minimal-env/sbxenv.yaml" >/dev/null
 for kit in pi herdr multi-provider; do sbx kit validate "$root/chapters/kits/$kit" --json; done
 for chapter in "$root/chapters/0"*/chapter.env; do
   source "$chapter"
-  sbx env plan "${chapter%/*}/sbxenv.yaml" --env-arg name=wad-chapter-plan >/dev/null
+  sbx env plan "${chapter%/*}/sbxenv.yaml" --env-arg name=sbx-chapter-plan >/dev/null
   printf 'VALID environment: %s\n' "${chapter%/*}"
 done
 echo 'PASS: syntax, kit validation, and real SBX environment plans. This is not an end-to-end run.'

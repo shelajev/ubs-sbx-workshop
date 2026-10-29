@@ -12,7 +12,7 @@ From the workshop repository root:
 
 ```bash
 # SANDBOX tab — before connecting, from the workshop repository
-sbx run claude "$(pwd)/sample-app" --name wad-manual --skills off --cpus 4 --memory 8g
+sbx run claude "$(pwd)/sample-app" --name sbx-manual --skills off --cpus 4 --memory 8g
 ```
 
 `claude` chooses the agent, `"$(pwd)/sample-app"` gives the full path to the sample
@@ -97,7 +97,7 @@ from Claude, then check its absence in your host editor:
 On Windows, first run this in your **HOST Git Bash tab**, from the workshop root:
 
 ```bash
-./scripts/prepare-workspace.sh wad-manual
+./scripts/prepare-workspace.sh sbx-manual
 ```
 
 On Windows, this gives npm dependencies their own storage inside the sandbox,
@@ -132,7 +132,7 @@ Then publish the web port from your HOST tab:
 
 ```bash
 # HOST
-sbx ports wad-manual --publish 3102:8080
+sbx ports sbx-manual --publish 3102:8080
 ```
 
 `3102:8080` connects port 3102 on your host to port 8080 in this sandbox.
@@ -151,7 +151,7 @@ The assistant can run development commands freely inside SBX. Access beyond that
 environment is a separate decision. In HOST, inspect the policy for this sandbox:
 
 ```bash
-sbx policy ls wad-manual --wide
+sbx policy ls sbx-manual --wide
 ```
 
 Find the network rules, their destinations and the sources of those rules. If
@@ -172,7 +172,7 @@ appropriate. This is the command pattern; replace `HOSTNAME` with the reported
 hostname before running it:
 
 ```bash
-sbx policy allow network --sandbox wad-manual HOSTNAME
+sbx policy allow network --sandbox sbx-manual HOSTNAME
 ```
 
 Then ask the assistant to retry. This scopes your allowance to this sandbox;
@@ -181,6 +181,6 @@ is nothing to approve. Later you can record recurring access needs in a kit.
 
 You have now seen three boundaries: the app directory is shared, containers run
 inside SBX, and host access to the app goes through a published port. Keep
-`wad-manual` and its agent session open for the next step.
+`sbx-manual` and its agent session open for the next step.
 
 Next: [give the agent work](02-tasks.md).

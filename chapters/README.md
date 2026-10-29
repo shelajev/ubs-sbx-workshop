@@ -98,7 +98,7 @@ The reference file supplies the chapter's standard kits, so keep those too.
 For the chapter 4 example above, continue in your SANDBOX tab:
 
 ```bash
-./scripts/launch-factory.sh wad-ch-04
+./scripts/launch-factory.sh sbx-ch-04
 ```
 
 The configuration supplies the ACR and Herdr kits and opens a shell. A fresh application
@@ -125,7 +125,7 @@ the reference all-Claude team using Sonnet for all three roles. If an older
 configuration was preserved, replace its rows with the
 [current all-Claude configuration](04-team/README.md#2-give-the-assistants-different-responsibilities).
 Restore any extra kit entries as described
-above. Then launch `wad-ch-06`, run `install-guidance` in its sandbox shell for the
+above. Then launch `sbx-ch-06`, run `install-guidance` in its sandbox shell for the
 fresh checkpoint, and submit its task as chapter 6 describes.
 The path you work in remains `sample-app/`.
 
@@ -140,12 +140,12 @@ For example, after chapter 5:
 
 ```bash
 # HOST
-sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-05
+sbx env rm factory/sbxenv.yaml --env-arg name=sbx-ch-05
 ```
 
 Review the destroy plan for the sandbox and its local MCP command. On an older
 release or after manual registration, inspect `sbx mcp ls`; remove only a remaining
-`wad-ch-05-beans` entry with `sbx mcp rm wad-ch-05-beans`. Chapters 6 and 7 show
+`sbx-ch-05-beans` entry with `sbx mcp rm sbx-ch-05-beans`. Chapters 6 and 7 show
 their corresponding names. Earlier chapters have no MCP registration to remove.
 
 Then run the chapter's launcher again from the SANDBOX tab, at the workshop root.

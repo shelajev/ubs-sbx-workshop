@@ -24,12 +24,12 @@ your application alone. Wait for its ready message before continuing.
 Read the first task in HOST:
 
 ```bash
-./scripts/beans show wad-101
+./scripts/beans show task-101
 ```
 
 The task changes the board's result count to describe the current filter. Copy
 the printed requirements and acceptance criteria. Paste them into your running
-agent in `wad-manual`, followed by:
+agent in `sbx-manual`, followed by:
 
 > Implement this task in the current project. Run the relevant checks inside
 > this sandbox, commit the change, and refresh the app on 0.0.0.0:8080 so I can
@@ -66,13 +66,13 @@ outside the writable application mount.
 Register that host command with SBX. In **macOS HOST**:
 
 ```bash
-sbx mcp add wad-beans --command bash --args "$(pwd)/scripts/beans-mcp"
+sbx mcp add beans --command bash --args "$(pwd)/scripts/beans-mcp"
 ```
 
 In **Windows HOST Git Bash**, use the Windows path to Bash and the script:
 
 ```bash
-sbx mcp add wad-beans --command "$(cygpath -w /bin/bash)" --args "$(pwd -W)/scripts/beans-mcp"
+sbx mcp add beans --command "$(cygpath -w /bin/bash)" --args "$(pwd -W)/scripts/beans-mcp"
 ```
 
 Run only the line for your platform. `add` records a command; it does not give it
@@ -80,13 +80,13 @@ to every sandbox. Read any host-command approval prompt and check the script pat
 Now attach it to the sandbox you already have, in HOST:
 
 ```bash
-sbx mcp load wad-beans --sandbox wad-manual
+sbx mcp load beans --sandbox sbx-manual
 ```
 
 This is SBX configuration, not a per-agent MCP installation. Its gateway exposes
 the server's tools to the assistant. Ask the agent:
 
-> Use the Beans MCP tools to read the full body of wad-101, including every
+> Use the Beans MCP tools to read the full body of task-101, including every
 > acceptance criterion. Compare those requirements with the
 > current code and the change we just made. Do not implement it twice or edit
 > anything. Show me the tool result and explain whether the change meets it.
@@ -94,8 +94,8 @@ the server's tools to the assistant. Ask the agent:
 Compare the retrieved task with your earlier host output. You should see an
 actual tool call, not an answer recalled from the pasted text. If the tools are
 missing, inspect `sbx mcp ls` in HOST and the agent's `/mcp` view. Confirm you
-loaded `wad-beans` into `wad-manual`; reconnect the agent with
-`sbx run --name wad-manual` if its tool list has not refreshed.
+loaded `beans` into `sbx-manual`; reconnect the agent with
+`sbx run --name sbx-manual` if its tool list has not refreshed.
 
 For a new task you can now say “Read task ID through Beans and implement it,”
 instead of pasting the whole task. We used the completed task here so you can
@@ -107,12 +107,12 @@ Leave the agent with `/exit` in Claude or `/quit` in Codex. Remove this sandbox
 in HOST:
 
 ```bash
-sbx rm wad-manual
+sbx rm sbx-manual
 ```
 
-Your app and commit remain. Keep the `wad-beans` registration: you will attach
+Your app and commit remain. Keep the `beans` registration: you will attach
 it to the next sandbox. If you stop the workshop here, remove the registration
-with `sbx mcp rm wad-beans`; repeat the registration step when you return.
+with `sbx mcp rm beans`; repeat the registration step when you return.
 
 If you need the completed warm-up, run the following in HOST after removing the
 sandbox. It backs up your current app and installs the completed checkpoint:

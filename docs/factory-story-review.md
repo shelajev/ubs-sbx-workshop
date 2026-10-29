@@ -40,7 +40,7 @@ Completed on October 29, 2026:
   `workshop-hello` printed its greeting; ACR 0.2.1 installed the pinned policy,
   realized 11 changes for Claude/Codex, and reported the realization current.
 - Manual `sbx mcp add` and `load` connected the real Beans adapter to that running
-  sandbox. Claude retrieved wad-101 through the gateway, reported its title and
+  sandbox. Claude retrieved task-101 through the gateway, reported its title and
   acceptance criterion, and confirmed no note-writing tool was exposed.
   To honor the operator's host execution policy, this rehearsal ran the adapter
   and disposable backlog in a second SBX via `sbx exec -i`; it did not execute
@@ -81,15 +81,15 @@ No Gemini process ran on the host, and no host credentials were mounted.
 ## Attendee rehearsal follow-up
 
 October 29: completed the manual sandbox, shared-file boundary, Docker and published
-HTTP port exercises; pasted wad-101; retrieved the same task through SBX-managed
+HTTP port exercises; pasted task-101; retrieved the same task through SBX-managed
 MCP; changed and recreated a kit; installed and checked ACR guidance; and recreated
 the environment. Fresh Claude sandboxes reused the existing configured model
 access without another login.
 
-The three Claude roles completed a read-only handoff and implemented wad-102,
+The three Claude roles completed a read-only handoff and implemented task-102,
 reviewed it and appended a Beans note. SSH joined the running team, delivered a
 human decision and observed its recorded acknowledgement. The latter rehearsed
-only the handoff, not implementation of wad-103.
+only the handoff, not implementation of task-103.
 
 Rehearsal fixes:
 

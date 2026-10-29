@@ -64,7 +64,7 @@ Finish and remove the normal chapter sandbox first. This demonstration uses the
 same mounted `sample-app/` and port 3102, so it runs on its own. In the SANDBOX tab:
 
 ```bash
-./chapters/04-team/launch-mixed wad-mixed
+./chapters/04-team/launch-mixed sbx-mixed
 ```
 
 The helper uses `sbx create` with the custom sandbox kit and the ACR, Pi and Herdr
@@ -83,7 +83,7 @@ call failed and continue with the working team configuration.
 Exit the shell when finished. In HOST:
 
 ```bash
-sbx rm wad-mixed
+sbx rm sbx-mixed
 ```
 
 ## Carry the mixed team into the MCP exercise
@@ -93,7 +93,7 @@ connection with this same team, use the supplied MCP reference configuration:
 
 ```bash
 # SANDBOX tab — before connecting, at the workshop root
-./chapters/04-team/launch-mixed wad-mixed-mcp 05-mcp
+./chapters/04-team/launch-mixed sbx-mixed-mcp 05-mcp
 ```
 
 The second argument chooses the chapter's completed settings and prompt. This
@@ -101,7 +101,7 @@ creates one new sandbox on the same `sample-app/`. Inside its shell, try a small
 read-only request before a full feature:
 
 ```bash
-crew ask "Ask developer to read wad-101 through MCP and list package.json test scripts. Ask QA to check the list independently. Report the combined answer; do not change project files or write a task note."
+crew ask "Ask developer to read task-101 through MCP and list package.json test scripts. Ask QA to check the list independently. Report the combined answer; do not change project files or write a task note."
 crew watch
 ```
 
@@ -117,8 +117,8 @@ it does not read extra kits from your evolving `factory/` configuration.
 Exit the shell, then in HOST:
 
 ```bash
-sbx rm wad-mixed-mcp
-sbx mcp rm wad-mixed-mcp-beans
+sbx rm sbx-mixed-mcp
+sbx mcp rm sbx-mixed-mcp-beans
 ```
 
 The main attendee path continues with `factory/` and the built-in Claude environment.

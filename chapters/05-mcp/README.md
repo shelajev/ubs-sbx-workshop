@@ -63,7 +63,7 @@ environment file, so the script path leads from `factory/` back to `scripts/`.
 On Windows, the launcher supplies the path to Git Bash as `host_shell`.
 
 The server name combines the sandbox name with `-beans`. For this chapter, the
-registration will be called `wad-ch-05-beans`; you'll see that name when you
+registration will be called `sbx-ch-05-beans`; you'll see that name when you
 inspect the connection and remove it at the end.
 
 These fields describe both registration and attachment. You can also register and
@@ -81,13 +81,13 @@ defines.
 Edit `factory/chapter.env` to contain:
 
 ```text
-TASK=wad-102
+TASK=task-102
 MODE=mcp
 USE_ACR=1
 SESSION=shell
 ```
 
-`TASK=wad-102` selects the next feature: assigning incidents and recording their
+`TASK=task-102` selects the next feature: assigning incidents and recording their
 resolution. `MODE=mcp` starts the team and supplies only that task ID, so the agent
 must fetch the current requirements through the gateway. `SESSION=shell` gives us
 a place to explore the tools before submitting work.
@@ -114,14 +114,14 @@ uses the all-Claude team from that chapter; no new model account is needed.
 In HOST, preview the connection:
 
 ```bash
-sbx env plan factory/sbxenv.yaml --env-arg name=wad-ch-05
+sbx env plan factory/sbxenv.yaml --env-arg name=sbx-ch-05
 ```
 
 Look for the host program, note permission and application mount. In SANDBOX,
 starting at the workshop root:
 
 ```bash
-./scripts/launch-factory.sh wad-ch-05
+./scripts/launch-factory.sh sbx-ch-05
 ```
 
 SBX shows an approval plan before creation. Review the workspace, kits and host
@@ -142,7 +142,7 @@ claude
 This is your exploration session, separate from the team's developer. Type `/mcp`
 to inspect the gateway connection, then ask:
 
-> Use the Beans MCP tools to list the workshop tasks and read wad-102. Explain the
+> Use the Beans MCP tools to list the workshop tasks and read task-102. Explain the
 > requested feature. Do not implement it or write a note yet.
 
 Watch the tool calls. You should see the assignment-and-resolution requirements
@@ -150,7 +150,7 @@ stored in the host backlog. Ask what information is required to resolve an incid
 Compare Claude's answer with the original task in HOST:
 
 ```bash
-./scripts/beans show wad-102
+./scripts/beans show task-102
 ```
 
 The requirements should match. You have read a host task from inside SBX without
@@ -187,7 +187,7 @@ record your decision for this workshop environment.
 If that is the destination your agent reports and you decide to allow it, use HOST:
 
 ```bash
-sbx policy allow network --sandbox wad-ch-05 cdn.playwright.dev
+sbx policy allow network --sandbox sbx-ch-05 cdn.playwright.dev
 ```
 
 This grants network access only for this sandbox and host. Return to the SANDBOX
@@ -247,7 +247,7 @@ are distinct controls.
 Open **<http://127.0.0.1:3102>**. Try assigning and resolving an incident. In HOST:
 
 ```bash
-./scripts/beans show wad-102
+./scripts/beans show task-102
 git -C sample-app log -1 --oneline
 ```
 
@@ -259,13 +259,13 @@ When the team is finished, press Ctrl-C to leave `crew watch`, then type `exit`
 to leave the SANDBOX shell. In HOST:
 
 ```bash
-sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-05
+sbx env rm factory/sbxenv.yaml --env-arg name=sbx-ch-05
 ```
 
 Review the destroy plan. In SBX 0.50.0, removing this local environment also
 revokes and removes its environment-defined MCP command. If you are recovering
 an older installation or a manually registered server, inspect `sbx mcp ls` and
-remove only a remaining `wad-ch-05-beans` entry with `sbx mcp rm wad-ch-05-beans`.
+remove only a remaining `sbx-ch-05-beans` entry with `sbx mcp rm sbx-ch-05-beans`.
 Keep the application as it is; the next task builds on your
 assignment-and-resolution feature.
 

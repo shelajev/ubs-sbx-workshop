@@ -88,7 +88,7 @@ func backlog(t *testing.T, tasks map[string]string) (configFile, dataDir string)
 		t.Fatal(err)
 	}
 	configFile = filepath.Join(root, ".beans.yml")
-	config := "beans:\n    path: .beans\n    prefix: wad-\n    id_length: 4\n" +
+	config := "beans:\n    path: .beans\n    prefix: task-\n    id_length: 4\n" +
 		"    default_status: todo\n    default_type: task\n"
 	if err := os.WriteFile(configFile, []byte(config), 0o644); err != nil {
 		t.Fatal(err)
@@ -142,11 +142,11 @@ func ctx(t *testing.T) context.Context {
 
 func sampleTasks() map[string]string {
 	return map[string]string{
-		"wad-101": task("wad-101", "Warm-up: active-filter result count", "todo",
+		"task-101": task("task-101", "Warm-up: active-filter result count", "todo",
 			"Fix the count text.\n\n## Acceptance criteria\n- singular for one result\n- plural otherwise\n\n## Out of scope\n- filtering"),
-		"wad-102": task("wad-102", "Add assignment and resolution", "in-progress",
+		"task-102": task("task-102", "Add assignment and resolution", "in-progress",
 			"Implement assignment.\n\n## Acceptance criteria\n- note required at the API"),
-		"wad-109": task("wad-109", "Completed example", "completed", "Nothing to do."),
+		"task-109": task("task-109", "Completed example", "completed", "Nothing to do."),
 	}
 }
 
@@ -210,7 +210,7 @@ func TestGetTaskReturnsTheHostTaskWithAVersion(t *testing.T) {
 	session, _ := connect(t, cfg, data)
 
 	result, err := session.CallTool(ctx(t), &mcp.CallToolParams{
-		Name: "get_task", Arguments: map[string]any{"id": "wad-101"},
+		Name: "get_task", Arguments: map[string]any{"id": "task-101"},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -230,8 +230,8 @@ func TestGetTaskReturnsTheHostTaskWithAVersion(t *testing.T) {
 	}
 	decodeStructured(t, result, &got)
 
-	if got.ID != "wad-101" {
-		t.Errorf("id = %q, want wad-101", got.ID)
+	if got.ID != "task-101" {
+		t.Errorf("id = %q, want task-101", got.ID)
 	}
 	if !strings.Contains(got.Title, "active-filter result count") {
 		t.Errorf("title = %q", got.Title)
@@ -264,12 +264,12 @@ func TestGetTaskRejectsMalformedIDs(t *testing.T) {
 		{"empty", "", "invalid_id"},
 		{"flag injection", "--beans-path", "invalid_id"},
 		{"path traversal", "../../etc/passwd", "invalid_id"},
-		{"shell metacharacters", "wad-101; rm -rf /", "invalid_id"},
+		{"shell metacharacters", "task-101; rm -rf /", "invalid_id"},
 		{"command substitution", "$(whoami)", "invalid_id"},
-		{"uppercase", "WAD-101", "invalid_id"},
-		{"single group", "wad", "invalid_id"},
+		{"uppercase", "TASK-101", "invalid_id"},
+		{"single group", "task", "invalid_id"},
 		{"too long", strings.Repeat("a", 30) + "-" + strings.Repeat("b", 40), "invalid_id"},
-		{"unknown but well formed", "wad-999", "task_not_found"},
+		{"unknown but well formed", "task-999", "task_not_found"},
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -334,7 +334,7 @@ func TestListTasksIsBoundedAndFiltered(t *testing.T) {
 		}
 		var got listResult
 		decodeStructured(t, result, &got)
-		if got.Count != 1 || got.Tasks[0].ID != "wad-109" {
+		if got.Count != 1 || got.Tasks[0].ID != "task-109" {
 			t.Errorf("status filter returned %+v", got.Tasks)
 		}
 	})
@@ -381,7 +381,7 @@ func TestMultipleReadsSeeHostSideChanges(t *testing.T) {
 	session, _ := connect(t, cfg, data)
 
 	first, err := session.CallTool(ctx(t), &mcp.CallToolParams{
-		Name: "get_task", Arguments: map[string]any{"id": "wad-101"},
+		Name: "get_task", Arguments: map[string]any{"id": "task-101"},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -393,7 +393,7 @@ func TestMultipleReadsSeeHostSideChanges(t *testing.T) {
 	decodeStructured(t, first, &before)
 
 	// Host-side edit, exactly as a maintainer changing the task would do it.
-	path := filepath.Join(data, "wad-101--wad-101.md")
+	path := filepath.Join(data, "task-101--task-101.md")
 	content, err := os.ReadFile(path)
 	if err != nil {
 		t.Fatal(err)
@@ -405,7 +405,7 @@ func TestMultipleReadsSeeHostSideChanges(t *testing.T) {
 	}
 
 	second, err := session.CallTool(ctx(t), &mcp.CallToolParams{
-		Name: "get_task", Arguments: map[string]any{"id": "wad-101"},
+		Name: "get_task", Arguments: map[string]any{"id": "task-101"},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -432,7 +432,7 @@ func TestTwoIndependentProcessesShareTheBacklog(t *testing.T) {
 
 	for i, session := range []*mcp.ClientSession{first, second} {
 		result, err := session.CallTool(ctx(t), &mcp.CallToolParams{
-			Name: "get_task", Arguments: map[string]any{"id": "wad-102"},
+			Name: "get_task", Arguments: map[string]any{"id": "task-102"},
 		})
 		if err != nil {
 			t.Fatalf("session %d: %v", i, err)
@@ -445,7 +445,7 @@ func TestTwoIndependentProcessesShareTheBacklog(t *testing.T) {
 			Status string `json:"status"`
 		}
 		decodeStructured(t, result, &got)
-		if got.ID != "wad-102" || got.Status != "in-progress" {
+		if got.ID != "task-102" || got.Status != "in-progress" {
 			t.Errorf("session %d read %+v", i, got)
 		}
 	}
@@ -455,7 +455,7 @@ func TestStdoutCarriesProtocolTrafficOnly(t *testing.T) {
 	cfg, data := backlog(t, sampleTasks())
 	session, stderr := connect(t, cfg, data, "--log-level=debug")
 
-	for _, id := range []string{"wad-101", "wad-999", "wad-102"} {
+	for _, id := range []string{"task-101", "task-999", "task-102"} {
 		if _, err := session.CallTool(ctx(t), &mcp.CallToolParams{
 			Name: "get_task", Arguments: map[string]any{"id": id},
 		}); err != nil {
@@ -491,7 +491,7 @@ func TestWriteToolIsRefusedWithoutADisposableBacklog(t *testing.T) {
 	}
 
 	result, err := session.CallTool(ctx(t), &mcp.CallToolParams{
-		Name: "add_task_note", Arguments: map[string]any{"id": "wad-101", "note": "should not be written"},
+		Name: "add_task_note", Arguments: map[string]any{"id": "task-101", "note": "should not be written"},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -504,7 +504,7 @@ func TestWriteToolIsRefusedWithoutADisposableBacklog(t *testing.T) {
 	}
 
 	// The task body must be untouched.
-	content, err := os.ReadFile(filepath.Join(data, "wad-101--wad-101.md"))
+	content, err := os.ReadFile(filepath.Join(data, "task-101--task-101.md"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -521,7 +521,7 @@ func TestWriteToolWorksOnlyOnADisposableBacklog(t *testing.T) {
 	session, _ := connect(t, cfg, data, "--enable-presenter-note-tool")
 
 	result, err := session.CallTool(ctx(t), &mcp.CallToolParams{
-		Name: "add_task_note", Arguments: map[string]any{"id": "wad-101", "note": "Review complete: \"quoted\" paths, café, 日本語.\nSecond line."},
+		Name: "add_task_note", Arguments: map[string]any{"id": "task-101", "note": "Review complete: \"quoted\" paths, café, 日本語.\nSecond line."},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -721,7 +721,7 @@ func TestBacklogIsolationFromUpwardDiscovery(t *testing.T) {
 
 	// And the configured backlog must still answer.
 	result, err = session.CallTool(c, &mcp.CallToolParams{
-		Name: "get_task", Arguments: map[string]any{"id": "wad-101"},
+		Name: "get_task", Arguments: map[string]any{"id": "task-101"},
 	})
 	if err != nil {
 		t.Fatal(err)

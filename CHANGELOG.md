@@ -2,6 +2,12 @@
 
 ## October 29, 2026
 
+- Use `sbx-*` sandbox names, `beans` for the first MCP connection and
+  `task-101` through `task-104` across instructions, seeds and helper defaults.
+  Publish the adapter as 0.1.2 with matching task examples and UBS download URLs.
+- Align the slides and speaker notes with the 90-minute UBS session and its
+  continuation into teams and human decisions.
+
 - Publish the UBS workshop with attendee clone instructions and slide links
   pointing to `shelajev/ubs-sbx-workshop`.
 

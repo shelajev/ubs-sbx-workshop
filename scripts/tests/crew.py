@@ -23,7 +23,7 @@ class CrewNotificationTests(unittest.TestCase):
         spec = importlib.util.spec_from_loader(loader.name, loader)
         self.crew = importlib.util.module_from_spec(spec)
         loader.exec_module(self.crew)
-        (self.crew.base / 'state.json').write_text(json.dumps({'task_id': 'wad-test'}))
+        (self.crew.base / 'state.json').write_text(json.dumps({'task_id': 'sbx-test'}))
         self.messages = ['msg-old-unread']
         self.claims = {'msg-old-unread'}
         self.notifications = []

@@ -51,7 +51,7 @@ Add it to the host backlog:
 ./scripts/beans create "My project's first factory task" --type task --status todo --body-file factory/TASK.md
 ```
 
-Beans prints the new task's ID. In `factory/chapter.env`, replace `wad-103` on
+Beans prints the new task's ID. In `factory/chapter.env`, replace `task-103` on
 the `TASK=` line with that ID. Keep `MODE=mcp`, `USE_ACR=1` and `SESSION=shell`; the gateway will read this task just
 as it read the sample tasks. The new task lives in your workshop backlog on the
 host; creating it doesn't open an issue in the project's upstream repository.
@@ -103,7 +103,7 @@ a skill or tools you'd want to install through a kit next time.
 In SANDBOX, starting at the workshop repository root:
 
 ```bash
-./scripts/launch-factory.sh wad-my-project projects/my-project
+./scripts/launch-factory.sh sbx-my-project projects/my-project
 ```
 
 The first argument names the sandbox. The second changes its mounted workspace.
@@ -148,12 +148,12 @@ When finished, press Ctrl-C to leave `crew watch`, then type `exit` to leave
 the SANDBOX shell. In HOST:
 
 ```bash
-sbx env rm factory/sbxenv.yaml --env-arg name=wad-my-project --env-arg "app=$(pwd)/projects/my-project"
+sbx env rm factory/sbxenv.yaml --env-arg name=sbx-my-project --env-arg "app=$(pwd)/projects/my-project"
 ```
 
 SBX 0.50.0 also removes this environment's local MCP command. If an older or
-manually registered `wad-my-project-beans` entry remains in `sbx mcp ls`, remove it
-with `sbx mcp rm wad-my-project-beans`. The app argument identifies the same
+manually registered `sbx-my-project-beans` entry remains in `sbx mcp ls`, remove it
+with `sbx mcp rm sbx-my-project-beans`. The app argument identifies the same
 workspace used on creation. You now have an
 environment and team you can reuse: change the task and select a project for the
 next job.

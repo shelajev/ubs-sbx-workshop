@@ -1,5 +1,5 @@
 ---
-# wad-103
+# task-103
 title: Reopen a resolved incident
 status: todo
 type: feature
@@ -21,7 +21,7 @@ An incident was resolved too early and has to go back on the board.
 - `400 {"error":{"code":"reason_required","field":"reason"}}` for a missing, empty or
   whitespace-only reason.
 - `409 {"error":{"code":"not_resolved"}}` if the incident is not currently resolved.
-- The same `requestId` rules as `wad-102` apply.
+- The same `requestId` rules as `task-102` apply.
 
 ## Unresolved requirement — do not guess
 
@@ -52,7 +52,7 @@ in its historical entry. The reopen form is only available for resolved incident
   `$FACTORY_DIR/decisions/<task>-a<attempt>.json` in the run workspace, and the decision file
   is referenced in the implementation report.
 - A test asserts the decided behaviour explicitly, naming the decision in the test title.
-- `wad-102` behaviour and its tests are unchanged.
+- `task-102` behaviour and its tests are unchanged.
 - A real-browser test resolves an incident with a note, reopens it with a reason,
   reloads the page, and verifies the decided current-note behaviour and retained history.
 - `npm run typecheck`, `npm run test:unit`, `npm run test:integration` and

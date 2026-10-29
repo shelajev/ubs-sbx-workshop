@@ -14,7 +14,7 @@ mkdir -p "$fixture/.local" "$fixture/scripts/patches" "$fixture/backlog/seed"
 cp "$ROOT/scripts/prepare-app.sh" "$fixture/scripts/"
 cp "$ROOT/scripts/patches/app-cli-paths.patch" "$fixture/scripts/patches/"
 cp "$ROOT/scripts/patches/app-browser-checks.patch" "$fixture/scripts/patches/"
-cp "$ROOT/backlog/seed/wad-101--warm-up-active-filter-count.md" "$fixture/backlog/seed/"
+cp "$ROOT/backlog/seed/task-101--warm-up-active-filter-count.md" "$fixture/backlog/seed/"
 git clone --quiet --no-hardlinks "$ROOT/.local/app" "$fixture/.local/app"
 
 for ref in app-00-starter app-01-warmup-solution app-02-feature-solution; do
@@ -25,7 +25,7 @@ for ref in app-00-starter app-01-warmup-solution app-02-feature-solution; do
   [ "$(git -C "$app" show -s --format='%an <%ae>' HEAD)" = 'Workshop setup <workshop@example.invalid>' ]
   [ -z "$(git -C "$app" status --porcelain)" ]
   if [ "$ref" = app-00-starter ]; then
-    [ -f "$app/WORKSHOP-TASK.md" ]
+    cmp "$ROOT/backlog/seed/task-101--warm-up-active-filter-count.md" "$app/WORKSHOP-TASK.md"
     grep -Fx '/WORKSHOP-TASK.md' "$app/.git/info/exclude" >/dev/null
   else
     [ ! -e "$app/WORKSHOP-TASK.md" ]

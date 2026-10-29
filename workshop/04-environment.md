@@ -16,7 +16,7 @@ agent: claude
 workspace: "${{ env.args.app }}"
 args:
   name:
-    default: wad-repeatable
+    default: sbx-repeatable
   app:
     default: ../sample-app
   host_shell:
@@ -83,7 +83,7 @@ On Windows, prepare npm's executable-link storage for this manually created
 sandbox with this HOST command before asking the agent to run the app:
 
 ```bash
-./scripts/prepare-workspace.sh wad-repeatable
+./scripts/prepare-workspace.sh sbx-repeatable
 ```
 
 This keeps npm dependencies inside the sandbox while leaving source and Git
@@ -91,7 +91,7 @@ history shared. The team launcher introduced later performs this preparation.
 
 Ask the agent:
 
-> Run workshop-hello and acr --version. Read wad-101 through Beans MCP, then
+> Run workshop-hello and acr --version. Read task-101 through Beans MCP, then
 > inspect the project and its AGENTS.md. Confirm whether the filter-count change
 > is present; do not implement it twice. Start the app and its supporting services
 > inside SBX on 0.0.0.0:8080. The environment already publishes it at

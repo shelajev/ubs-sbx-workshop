@@ -2,7 +2,7 @@
 # OAuth declarations require a sandbox kit; SBX forbids them in mixins.
 schemaVersion: "2"
 kind: sandbox
-name: wad-multi-provider
+name: sbx-multi-provider
 description: Workshop Claude, Codex and Pi crew using host-side SBX credentials.
 args:
   google_secret_service:
@@ -128,8 +128,8 @@ setup:
       command: |
         set -eu
         mkdir -p "$HOME/.local/bin"
-        npm install --prefix "$HOME/.local/share/wad-codex" --no-audit --fund=false "@openai/codex@${{ kit.args.codex_version }}"
-        ln -sf "$HOME/.local/share/wad-codex/node_modules/.bin/codex" "$HOME/.local/bin/codex"
+        npm install --prefix "$HOME/.local/share/sbx-codex" --no-audit --fund=false "@openai/codex@${{ kit.args.codex_version }}"
+        ln -sf "$HOME/.local/share/sbx-codex/node_modules/.bin/codex" "$HOME/.local/bin/codex"
         codex --version
     - command: |
         set -e

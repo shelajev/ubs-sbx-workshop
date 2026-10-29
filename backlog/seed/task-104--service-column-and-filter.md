@@ -1,5 +1,5 @@
 ---
-# wad-104
+# task-104
 title: Show the affected service on the board and filter by it
 status: todo
 type: task
@@ -26,7 +26,7 @@ piece of work through the same factory.
   ordered by descending count then id, counting all incidents regardless of filter.
 - The board renders a service filter control, and combining it with severity and status
   filters works.
-- The `wad-101` count text includes the service in `describeFilter` output when a
+- The `task-101` count text includes the service in `describeFilter` output when a
   service filter is active.
 - Tests cover the API filter, the services endpoint, the combined filter, and the
   count text.

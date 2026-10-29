@@ -29,8 +29,8 @@ import (
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 
-	"github.com/shelajev/wad-sbx-workshop/mcp/beans/internal/backlog"
-	"github.com/shelajev/wad-sbx-workshop/mcp/beans/internal/server"
+	"github.com/shelajev/ubs-sbx-workshop/mcp/beans/internal/backlog"
+	"github.com/shelajev/ubs-sbx-workshop/mcp/beans/internal/server"
 )
 
 var (

@@ -10,7 +10,7 @@ You'll follow a small request through the team before asking it to change code.
 All three roles use Claude Code and the same Sonnet model through your Claude
 subscription. The roles share that account's usage limits.
 
-Start here after removing `wad-repeatable` at the end of step 4. This continuation
+Start here after removing `sbx-repeatable` at the end of step 4. This continuation
 uses Claude Code for all roles. If you used Codex for the single-agent exercises,
 you can follow the role design and observe the team demonstration; running this
 part yourself requires Claude access. Do not change provider credentials merely
@@ -75,7 +75,7 @@ existing environment file. The `crew` commands it installs run **inside SBX**.
 Create `factory/chapter.env` in your editor:
 
 ```text
-TASK=wad-101
+TASK=task-101
 MODE=manual
 USE_ACR=1
 SESSION=shell
@@ -89,7 +89,7 @@ shell so you can inspect and start the roles.
 Create `factory/PROMPT.md`:
 
 ```markdown
-Ask developer to read wad-101 through Beans MCP and inspect the existing change.
+Ask developer to read task-101 through Beans MCP and inspect the existing change.
 Ask QA to review the same commit against those requirements and the coding policy.
 Do not change code. Send the human your combined assessment and evidence.
 ```
@@ -101,10 +101,10 @@ in your environment file.
 In the SANDBOX tab, at the workshop root:
 
 ```bash
-./scripts/launch-factory.sh wad-ch-04
+./scripts/launch-factory.sh sbx-ch-04
 ```
 
-The launcher creates `wad-ch-04`, copies the workshop helpers and role briefs to
+The launcher creates `sbx-ch-04`, copies the workshop helpers and role briefs to
 `~/work`, and opens a shell. Review the SBX plan and host MCP command approval.
 It also prepares Windows dependency storage, so you no longer run that helper
 separately. If guidance setup reports a missing review skill, run
@@ -225,10 +225,10 @@ separate action so you can inspect the team before giving it a task.
 Type `exit` in the SANDBOX shell. In HOST:
 
 ```bash
-sbx env rm factory/sbxenv.yaml --env-arg name=wad-ch-04
+sbx env rm factory/sbxenv.yaml --env-arg name=sbx-ch-04
 ```
 
-Removing this environment also removes its `wad-ch-04-beans` MCP registration
+Removing this environment also removes its `sbx-ch-04-beans` MCP registration
 on SBX 0.50.0. The source and configuration remain. We have a team that can discuss
 work; next we give it a feature and enable one extra backlog operation: a result note.
 

@@ -1,5 +1,5 @@
 ---
-# wad-102
+# task-102
 title: Add incident assignment and resolution with a required note
 status: todo
 type: feature
@@ -78,7 +78,7 @@ Implement assignment, resolution and a durable history, validated on the server.
   and an `incident_events` table. The existing migration is not edited.
 - History survives a reconnect: a fresh pool reads the same entries.
 - Repeating a resolve with the same `requestId` leaves exactly one `resolved` entry.
-- Existing filter behaviour and the `wad-101` count text are unchanged.
+- Existing filter behaviour and the `task-101` count text are unchanged.
 - One browser flow assigns and resolves an incident, reloads the page, and finds the
   note and history still there.
 - `npm run typecheck`, `npm run test:unit`, `npm run test:integration` and
@@ -86,13 +86,9 @@ Implement assignment, resolution and a durable history, validated on the server.
 
 ## Out of scope
 - Authentication, real user accounts, notifications, and editing history entries.
-- Reopening a resolved incident: that is `wad-103`.
+- Reopening a resolved incident: that is `task-103`.
 
 ## Note for maintainers
 
-The status-transition rule above was originally written as "its status becomes
-`acknowledged` if it was `open`", which does not say what happens when the assignee is
-cleared. During implementation the QA role spotted that, the coordinator reported
-`needs-human` rather than guessing, and a human chose the rule now written above. The
-exchange is in `evidence/runs/wad-102-*/`. The rule is stated here so the main feature is
-deterministic and rehearsable; `wad-103` remains the intentional decision exercise.
+The assignment transition is specified above so this task can proceed without a
+product decision. `task-103` is the intentional human-decision exercise.

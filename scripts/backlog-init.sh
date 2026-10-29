@@ -40,7 +40,7 @@ if [ ! -f "$CONFIG_FILE" ]; then
 # working directory and can never answer from an unrelated backlog.
 beans:
     path: .beans
-    prefix: wad-
+    prefix: task-
     id_length: 4
     default_status: todo
     default_type: task

@@ -7,7 +7,7 @@ start with a question about the factory the attendees built and show what change
 Attendees can follow along on screen; completing the workshop doesn't depend on
 setting these up on their laptops.
 
-The seeded backlog also contains `wad-104`, an optional take-home or presenter
+The seeded backlog also contains `task-104`, an optional take-home or presenter
 exercise that adds a service column and filter to the incident table. It is not
 part of the chapter 1–7 walkthrough.
 
@@ -76,10 +76,10 @@ on the target host before calling the whole workshop verified.
 ## Look at the environment as a whole
 
 Prepare one demo sandbox and keep it connected before presenting. The examples
-below use `wad-demo`; substitute your prepared sandbox name throughout. In HOST:
+below use `sbx-demo`; substitute your prepared sandbox name throughout. In HOST:
 
 ```bash
-sbx inspect wad-demo
+sbx inspect sbx-demo
 ```
 
 Ask the audience to find the kits, published port and workspace/mount configuration.
@@ -98,7 +98,7 @@ Open a shell in the selected sandbox and leave it open in terminal A:
 
 ```bash
 # HOST — terminal A
-sbx exec -it wad-demo bash
+sbx exec -it sbx-demo bash
 ```
 
 This also starts it if it was stopped. In host terminal B, prepare a scratch folder
@@ -118,7 +118,7 @@ A message from the host
 Share it read-only from HOST:
 
 ```bash
-sbx mount wad-demo "$(pwd)/.local/mount-demo:/home/agent/mailbox:ro"
+sbx mount sbx-demo "$(pwd)/.local/mount-demo:/home/agent/mailbox:ro"
 ```
 
 `sbx mount` shares that directory at the
@@ -138,7 +138,7 @@ Back on the host, revoke the mount:
 
 ```bash
 # HOST — terminal B
-sbx umount wad-demo "$(pwd)/.local/mount-demo:/home/agent/mailbox"
+sbx umount sbx-demo "$(pwd)/.local/mount-demo:/home/agent/mailbox"
 ```
 
 The spelling is `umount`; the arguments identify the same host directory and target

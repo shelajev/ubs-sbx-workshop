@@ -6,4 +6,4 @@ chapter="${2:-04-team}"
 case "$chapter" in 04-team|05-mcp|06-human|07-factory) ;; *) echo 'Choose 04-team, 05-mcp, 06-human or 07-factory'; exit 2;; esac
 export WORKSHOP_BASE_KIT="$root/chapters/kits/multi-provider"
 export WORKSHOP_TEAM="$root/chapters/04-team/team-mixed.tsv"
-exec "$root/chapters/support/launch" "$root/chapters/$chapter" "${1:-wad-mixed}" "${3:-$root/sample-app}"
+exec "$root/chapters/support/launch" "$root/chapters/$chapter" "${1:-sbx-mixed}" "${3:-$root/sample-app}"
