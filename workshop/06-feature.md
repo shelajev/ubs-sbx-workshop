@@ -49,6 +49,7 @@ The developer should inspect the mounted project's documentation, install its
 dependencies and start any required services inside SBX, then implement the task.
 Ask QA to review the exact commit against the task and coding policy.
 After review, refresh the web app on 0.0.0.0:8080 and leave it running.
+The environment already publishes it at http://127.0.0.1:3102 on the human's laptop.
 Ask the developer to append a Beans result note with the change, commit and actual
 check outcomes. Leave the task open. Send the human a summary and how to try it.
 ```
@@ -91,6 +92,11 @@ is quiet, use `crew status` to see the stage, then `crew logs developer` (or the
 role that should act next) to inspect its terminal. Check for authentication,
 active work or an error before sending another request.
 
+The task includes a real-browser flow. If the team reports a blocked browser
+download, follow the [network-access exercise](../chapters/05-mcp/README.md#5-let-the-human-handle-a-request-for-more-access)
+now: find the reported host in the approval output, decide whether to allow it,
+and ask the team to retry. Then return here. A blocked check is still unverified.
+
 ## 3. Inspect the result
 
 When the team reports readiness, open <http://127.0.0.1:3102>. Try assigning and
@@ -104,10 +110,10 @@ Look for the result note, including the commit and actual check outcomes. Inspec
 the changed files in your editor. A note saying “done” is not a substitute for
 trying the behavior and reading the evidence.
 
-For an optional exercise in approving a browser download and saving the resulting
-network rules as a kit, use [browser access](../chapters/05-mcp/README.md#5-let-the-human-handle-a-request-for-more-access).
-Do only that section, then return here. It uses this running `wad-ch-05` team and
-your existing `factory/` configuration.
+To save recurring browser-download access as a kit, continue with the kit
+definition in [browser access](../chapters/05-mcp/README.md#5-let-the-human-handle-a-request-for-more-access).
+That extension uses this running `wad-ch-05` team and your existing `factory/`
+configuration. Return here for cleanup.
 
 ## 4. Finish this environment
 

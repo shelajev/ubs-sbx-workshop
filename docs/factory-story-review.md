@@ -77,3 +77,45 @@ fixes and returned **“No remaining blockers/major issues.”**
 Raw first and final reviews are retained locally under
 `.local/reviews/factory-story-gemini.txt` and `factory-story-gemini-final.txt`.
 No Gemini process ran on the host, and no host credentials were mounted.
+
+## Attendee rehearsal follow-up
+
+October 29: completed the manual sandbox, shared-file boundary, Docker and published
+HTTP port exercises; pasted wad-101; retrieved the same task through SBX-managed
+MCP; changed and recreated a kit; installed and checked ACR guidance; and recreated
+the environment. Fresh Claude sandboxes reused the existing configured model
+access without another login.
+
+The three Claude roles completed a read-only handoff and implemented wad-102,
+reviewed it and appended a Beans note. SSH joined the running team, delivered a
+human decision and observed its recorded acknowledgement. The latter rehearsed
+only the handoff, not implementation of wad-103.
+
+Rehearsal fixes:
+
+- Ask attendees to inspect files and find rows in the full policy table, without
+  supplying the observations in advance.
+- Tell the agent about the already published host port 3102.
+- Prepare dependency storage on Windows before the fresh ACR sandbox runs checks.
+- Explain Claude's background-task confirmation when exiting.
+- Make browser-download recovery reachable during feature work.
+- Tell the coordinator to advance the existing implementation/review/correction
+  stages. This prompt change was reviewed, but not rerun as another feature task.
+
+Application checks run by the agents passed, but the feature's browser flow was
+explicitly unverified after a blocked browser download. With operator approval,
+Playwright and native dependencies were then installed and Chromium launched
+successfully inside SBX. No further application suite was run. No computer use
+or desktop UI inspection was performed.
+
+The actual host client remained SBX 0.49.2. This does not establish a full 0.50.0,
+native Windows or Codex model rehearsal. Host helper execution was not approved:
+setup, Beans and its adapter ran in a separate SBX, and the launcher's transfer and
+prepare operations were reproduced through the SBX control plane. The exact host
+helper/adapter invocation therefore remains unverified on this laptop. The Windows
+dependency-storage branch was exercised in Linux SBX, not on Windows.
+
+Gemini reviewed the final fixes inside SBX and returned **“Approved”**, with no
+blockers. Raw review: `.local/reviews/factory-walkthrough-final-gemini.txt`.
+Rehearsal transcripts and team decision/message evidence remain in the disposable
+local walkthrough checkout; they are not attendee materials.

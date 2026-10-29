@@ -49,8 +49,8 @@ our installation step to the built-in agent environment. Ask the agent:
 
 > Run ~/.local/bin/workshop-hello inside this sandbox and show its output.
 
-Expect `Hello from a kit`. Change the greeting in your **host kit file** to
-something meaningful to you. The installed command does not change immediately:
+Compare the output with the command in your kit file. Change the greeting in your
+**host kit file** to something meaningful to you. The installed command does not change immediately:
 kit setup runs when SBX creates the environment. Leave the agent and remove the
 sandbox in HOST:
 
@@ -108,6 +108,16 @@ original requirements:
 ```bash
 sbx mcp load wad-beans --sandbox wad-guidance
 ```
+
+On **Windows**, prepare dependency storage for this fresh sandbox before the
+review skill runs application checks. In HOST Git Bash:
+
+```bash
+./scripts/prepare-workspace.sh wad-guidance
+```
+
+Read the storage path the helper reports. Your source stays shared; npm will
+install dependencies into this sandbox's storage, as in step 1.
 
 ## 3. Give the agent a review skill
 

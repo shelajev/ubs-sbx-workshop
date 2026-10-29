@@ -94,7 +94,9 @@ Ask the agent:
 > Run workshop-hello and acr --version. Read wad-101 through Beans MCP, then
 > inspect the project and its AGENTS.md. Confirm whether the filter-count change
 > is present; do not implement it twice. Start the app and its supporting services
-> inside SBX on 0.0.0.0:8080. Report what you found and how I can check it.
+> inside SBX on 0.0.0.0:8080. The environment already publishes it at
+> http://127.0.0.1:3102 on my laptop. Report what you found and how I can check it;
+> no additional port-publishing command is needed.
 
 Open <http://127.0.0.1:3102>. You did not need a separate port-publishing command,
 MCP registration or kit-installation conversation. Your environment definition
@@ -103,7 +105,8 @@ is not a saved running process or a database backup.
 
 ## 3. Prove you can start again
 
-Exit the agent and remove the environment from HOST:
+Exit the agent. If Claude asks about background tasks, choose to stop them and
+exit: you are about to remove this sandbox. Remove the environment from HOST:
 
 ```bash
 sbx env rm factory/sbxenv.yaml

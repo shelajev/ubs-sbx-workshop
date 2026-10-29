@@ -12,6 +12,9 @@ get_task tool for the ID in ~/work/task-id and write ~/work/task.json.
 Keep task retrieval and result notes with the developer, including when all roles
 use Claude. Do not invent or fetch tasks elsewhere.
 Ask developer to inspect and set up the project inside SBX, then implement the task.
+Before assigning implementation, run `handoff stage implementing`.
+Before requesting QA, run `handoff stage review`; when returning QA findings to
+developer, run `handoff stage correcting`.
 Await a completion message, then ask QA to review its exact
 commit. A failed review goes back to developer with the findings.
 If a requirement is ambiguous, send human a decision-request with both options and

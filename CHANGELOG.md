@@ -2,6 +2,11 @@
 
 ## October 29, 2026
 
+- Fix rehearsal gaps: Windows dependency preparation for ACR, explicit published
+  port in agent prompts, background-task exit guidance and browser recovery links.
+  Use observation-driven isolation and policy exercises; advance team progress stages.
+
+
 - Add a sequential attendee guide: manual SBX, pasted task, SBX-managed MCP,
   authored kits and ACR guidance, repeatable environment, team and human decisions.
   The 90-minute session targets the repeatable environment; the factory continues

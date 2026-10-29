@@ -52,8 +52,8 @@ host shell:
 !docker version
 ```
 
-You are in the application directory, running as the sandbox user. Docker's server
-is inside SBX; you do not need a host Docker engine.
+Read the directory and user names. In the Docker output, find the Server section
+and its operating system. Compare them with the directory and OS on your laptop.
 
 We want to see which files are shared with the sandbox. In your host editor, open `host-only.txt` at the workshop root (the setup helper created
 it) and replace its content with:
@@ -73,8 +73,7 @@ host file, then enter this in **Claude's input**:
 !cat ../host-only.txt
 ```
 
-The agent wrote into the shared application directory. Reading the neighbouring
-file should fail: you created that file outside the directory you mounted.
+Keep that result in view while you check the same files from your laptop.
 
 Back in your **HOST tab**:
 
@@ -84,9 +83,10 @@ cat "./sample-app/sandbox-message.txt"
 cat "./host-only.txt"
 ```
 
-You can read both on the host. Edits inside the mounted app are bidirectional;
-unrelated host directories have not been shared. The same applies to deletions
-inside the mounted directory. Remove the demonstration file from Claude:
+Compare the two terminals: identify which file the sandbox could read and which
+file appeared on your laptop after the agent wrote it. Use the workspace path in
+your `sbx run` command to explain the difference. Remove the demonstration file
+from Claude, then check its absence in your host editor:
 
 ```text
 !rm sandbox-message.txt
@@ -110,7 +110,8 @@ Give Claude this prompt:
 > Read README.md and get this application running inside the sandbox. Work out its
 > dependencies and start any supporting services using the Docker engine inside SBX.
 > Make the app available on 0.0.0.0:8080 and leave it running. Verify it responds.
-> Do not change application code yet. Explain what you started and why.
+> I will publish that port as localhost:3102 on my laptop using the workshop
+> instructions. Do not change application code yet. Explain what you started and why.
 
 Watch how Claude gets the app running: which dependencies does it install, and
 which containers does it start? Ask it to explain a command you don't recognize.
@@ -153,13 +154,18 @@ environment is a separate decision. In HOST, inspect the policy for this sandbox
 sbx policy ls wad-manual --wide
 ```
 
-Look at the destinations and the sources of the rules. Ask the assistant to
-explain any network error it encountered during startup, including the exact
-hostname it needed. If SBX reports an approval request, inspect it in HOST:
+Find the network rules, their destinations and the sources of those rules. If
+the assistant encountered a network error during startup, ask it for the exact
+hostname and operation. Find the matching rule in the table, or identify that
+no allowance covers the destination. If SBX reports an approval request, inspect
+it in HOST:
 
 ```bash
 sbx policy approval ls
 ```
+
+Find the row for your sandbox and the reported hostname. Read what operation
+needs approval; the list may also contain requests unrelated to the app.
 
 If a needed download was blocked, decide whether that specific destination is
 appropriate. This is the command pattern; replace `HOSTNAME` with the reported
